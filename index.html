@@ -14,7 +14,134 @@
   <body>
     <h1>Position Size Calculator</h1>
     <form>
+      <input> Account Currency: <input>
+      <input> Account Balance:  <input>
+      <input> Leverage : <input>
     </form>
+    <form name="ProfitCalculator">
+       <p align="center">
+        <font face="Verdana" style="font-size: 100%">Primary Account Currency:</font>
+       </p>
+       <p align="center">
+         <font face="Verdana" style="font-size: 100%">
+					 <select size="1" name="cboPrimaryCurrency" onchange="changePrimaryCurrency()">
+						   <option value="AUD">AUD</option>
+						   <option value="CAD">CAD</option>
+						   <option value="CHF">CHF</option>
+						   <option value="EUR">EUR</option>
+						   <option value="GBP">GBP</option>
+						   <option value="JPY">JPY</option>
+						   <option selected="" value="USD">USD</option>
+				   </select></font>
+       </p>
+       <p align="left">
+          <font face="Verdana" style="font-size: 100%"> Currency Pair: </font>
+       </p>
+       <p align="left">
+          <font face="Verdana" style="font-size: 100%">
+            <select size="1" name="cboCurrencyPair" onchange="changePair(this.options[this.selectedIndex].value)">
+						  <option value="" selected="">...</option>
+						  <option value="AUD/JPY">AUD/JPY</option>
+              <option value="AUD/NZD">AUD/NZD</option>
+              <option value="AUD/USD">AUD/USD</option>
+              <option value="CAD/JPY">CAD/JPY</option>
+              <option value="CHF/JPY">CHF/JPY</option>
+              <option value="EUR/AUD">EUR/AUD</option>
+              <option value="EUR/CAD">EUR/CAD</option>
+              <option value="EUR/CHF">EUR/CHF</option>
+              <option value="EUR/CZK">EUR/CZK</option>
+              <option value="EUR/DKK">EUR/DKK</option>
+              <option value="EUR/GBP">EUR/GBP</option>
+              <option value="EUR/HUF">EUR/HUF</option>
+              <option value="EUR/JPY">EUR/JPY</option>
+              <option value="EUR/NOK">EUR/NOK</option>
+              <option value="EUR/PLN">EUR/PLN</option>
+              <option value="EUR/SEK">EUR/SEK</option>
+              <option value="EUR/USD">EUR/USD</option>
+              <option value="GBP/CHF">GBP/CHF</option>
+              <option value="GBP/JPY">GBP/JPY</option>
+              <option value="GBP/USD">GBP/USD</option>
+              <option value="NZD/USD">NZD/USD</option>
+              <option value="USD/CAD">USD/CAD</option>
+              <option value="USD/CHF">USD/CHF</option>
+              <option value="USD/DKK">USD/DKK</option>
+              <option value="USD/HKD">USD/HKD</option>
+              <option value="USD/JPY">USD/JPY</option>
+              <option value="USD/MXN">USD/MXN</option>
+              <option value="USD/NOK">USD/NOK</option>
+              <option value="USD/PLN">USD/PLN</option>
+              <option value="USD/SAR">USD/SAR</option>
+              <option value="USD/SGD">USD/SGD</option>
+              <option value="USD/THB">USD/THB</option>
+              <option value="USD/ZAR">USD/ZAR</option>
+              <option value="XAG/USD">XAG/USD</option>
+              <option value="XAU/USD">XAU/USD</option>
+				    </select></font>
+          </p>
+                              <p align="left">
+                              <font face="Verdana" style="font-size: 100%">Opening Rate:</font></p><p align="left">
+					 
+				  <font face="Verdana" style="font-size: 100%">
+					 
+				  <input type="TEXT" name="txtOpeningRate" size="20" maxlength="20"></font></p>
+                              <p align="left">
+                              <font face="Verdana" style="font-size: 100%">Closing Rate:</font></p><p align="left">
+					 
+				  <font face="Verdana" style="font-size: 100%">
+					 
+				  <input type="TEXT" name="txtClosingRate" size="20" maxlength="20"></font></p>
+                              <p align="left">
+
+					 
+				  <font face="Verdana" style="font-size: 100%">
+
+					 
+				  <input disabled="" type="TEXT" name="txtBaseCode" value="" size="3" maxlength="3" onchange="calculateProfit()"> / <input disabled="" type="TEXT" name="txtPrimaryCode" value="" size="3" maxlength="3" onchange="calculateProfit()"> Rate:</font></p><p align="left">
+					 
+				  <font face="Verdana" style="font-size: 100%">
+					 
+				  <input type="TEXT" name="txtQuotePrimary" size="6" maxlength="6" onchange="changeQuotePrimary()"></font></p>
+                              <p align="left">
+                              <font face="Verdana" style="font-size: 100%">Action:</font></p><p align="left">
+					 
+						<font face="Verdana" style="font-size: 100%">
+					 
+						<select name="cboAction" size="1" onchange="changeAction()">
+
+						  <option value="BUY">Buy</option>
+						  <option value="SELL">Sell</option>
+				  </select></font></p>
+                              <p align="left">
+                              <font face="Verdana" style="font-size: 100%">Number Of Units:</font></p><p align="left">
+					 
+				  <font face="Verdana" style="font-size: 100%">
+					 
+				  <input type="TEXT" name="txtUnits" size="20" maxlength="20"></font><font face="Arial" style="font-size: 100%">
+                  </font>
+
+<font face="Arial" color="#FF0000" style="font-size: 100%">(Enter 100000 
+for 1 Standard Lot)</font></p>
+<p align="left">&nbsp;</p>
+<p align="left">	
+					 
+
+				  <font face="Verdana" style="font-size: 100%">	
+					 
+
+				  <input type="BUTTON" value="Calculate" onclick="calculateProfit()"></font></p>
+                              <p align="left">
+                              <span style="background-color: #FFFF00"><b>
+                              <font face="Arial" color="#FF0000">
+                              <span style="font-size: 100%">Profit</span></font></b></span><font face="Arial"><span style="background-color: #FFFF00"><font color="#FF0000"><b><span style="font-size: 100%">:</span></b></font></span></font><font face="Verdana" style="font-size: 100%"> 
+                              ( 
+			      <input disabled="" type="TEXT" name="txtProfitCode" value="" size="3" maxlength="3"> )</font></p><p align="left">
+
+					 
+						<font face="Verdana" style="font-size: 100%">
+
+					 
+						<input style="font-family: Verdana; color: #FF0000; font-weight: bold" type="TEXT" name="txtProfit" size="20" maxlength="20"></font></p>
+	    </form>
     
 
     <!-- Optional JavaScript -->
