@@ -7,8 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 
   <title>Forex Calculator</title>
@@ -16,7 +15,10 @@
 
 <body>
   
+  <header>
   <h1 align="center">Position Size Calculator</h1>
+  </header>
+  
   <form>
 
     <div class="form-group">
@@ -186,6 +188,92 @@
       </p>
     </div>
   </form>
+
+  <div>
+    <form>
+      <div class="col-sm-6 calculator equalheight" style="height: 577px;"> 
+
+<label>Currency pair:</label> 
+	<select name="from" class="from">
+		<option>AUDCAD</option>
+		<option>AUDCHF</option>
+		<option>AUDJPY</option>
+		<option>AUDNZD</option>
+		<option>AUDUSD</option>
+		<option>CADCHF</option>
+		<option>CADJPY</option>
+		<option>CHFJPY</option>
+		<option>EURAUD</option>
+		<option>EURCAD</option>
+		<option>EURCHF</option>
+		<option>EURDKK</option>
+		<option>EURGBP</option>
+		<option>EURHKD</option>
+		<option>EURJPY</option>
+		<option>EURNOK</option>
+		<option>EURNZD</option>
+		<option>EURPLN</option>
+		<option>EURSEK</option>
+		<option>EURTRY</option>
+		<option>EURUSD</option>
+		<option>GBPAUD</option>
+		<option>GBPCAD</option>
+		<option>GBPCHF</option>
+		<option>GBPDKK</option>
+		<option>GBPJPY</option>
+		<option>GBPNZD</option>
+		<option>GBPPLN</option>
+		<option>GBPSEK</option>
+		<option>GBPUSD</option>
+		<option>NZDCAD</option>
+		<option>NZDCHF</option>
+		<option>NZDJPY</option>
+		<option>NZDUSD</option>
+		<option>USDCAD</option>
+		<option>USDCHF</option>
+		<option>USDCZK</option>
+		<option>USDDKK</option>
+		<option>USDHKD</option>
+		<option>USDHUF</option>
+		<option>USDJPY</option>
+		<option>USDMXN</option>
+		<option>USDNOK</option>
+		<option>USDPLN</option>
+		<option>USDSEK</option>
+		<option>USDSGD</option>
+		<option>USDTRY</option>
+		<option>USDZAR</option>
+		<option>XAGUSD</option>
+		<option>XAUEUR</option>
+		<option>XAUUSD</option>
+	</select> 
+
+<label>Buy or Sell:</label> 
+	<select name="buysell" class="buysell">
+		<option value="buy">buy</option>
+		<option value="sell">sell</option> 
+	</select> 
+
+<label>Open price:</label> 
+	<input type="text" name="open_price" value="" class="open_price"> 
+
+<label>Close price:</label> 
+	<input type="text" name="close_price" value="" class="close_price"> 
+
+<label>Trade size (lots):</label> 
+	<input type="text" name="size" value="" class="size"> 
+
+<label>Deposit currency:</label> 
+	<select name="to" class="to">
+		<option>EUR</option>
+		<option>USD</option>
+		<option>GBP</option>
+	</select>
+
+	<h2 class="result">€ 90.90248</h2>
+</div>
+    </form>
+</div>
 
 
 
