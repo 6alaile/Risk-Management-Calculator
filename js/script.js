@@ -5,11 +5,11 @@ calculateMargin(){
 
 changeDirection(){
     let direction = document.getElementById("BuySellButton").innerHTML;
-    if (direction){
-        direction == 1; //Value == 1 is SELL, set button Red
+    if (direction == 1){
+         //set button Red and text SELL
         return
-    } else {
-        //Value == 0 is BUY, set button Green
+    } else (direction == 0) {
+        //set button Green and text BUY
     }
 }
 

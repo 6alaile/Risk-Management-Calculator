@@ -159,22 +159,27 @@
         <h2>Profit Calculation</h2>
 
         <div class="form-group row">
-          <label class="form-label">Entry (Opening Price)</label>
-          <div>
+          <label class="form-label">Entry Price</label>
+          <div class="col">
             <input id="EntryPrice" type="text" class="form-control">
+          </div>
+          <div class="col">
+            <button id="BuySellButton" class="btn btn-success" value="0" onclick="changeDirection()">BUY</button>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="form-label">Exit (Closing Price)</label>
-          <div>
-            <input id="ExitPrice" type="text" class="form-control">
+          <label class="form-label">Exit Price</label>
+          <div class="col">
+            <label class="form-label">Take Profit</label>
+            <input id="TakeProfit" type="text" class="form-control">
+          </div>
+          <div class="col">
+            <label class="form-label">Stop Loss</label>
+            <input id="StopLoss" type="text" class="form-control">
           </div>
         </div>
         
-        <div class="form-group row">
-          <button id="BuySellButton" class="btn btn-danger" value="0" onclick="changeDirection()"> Buy/Sell </button>
-        </div>
 
         <div class="form-group row">
           <div class="col-sm-6">
