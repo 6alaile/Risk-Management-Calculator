@@ -1,5 +1,7 @@
+/* Styling for Elements*/
 body{
     margin: auto;
+    text-align: center;
 }
 
 header{
@@ -7,15 +9,30 @@ header{
     background-color: darkgrey;
 }
 
-h2{
-    text-align: center;
-}
-
-p{
-    text-align: center;
-}
-
 form{
     margin: 1em;
     padding: 0.5em;
 }
+
+label{
+    padding: 0.5em;
+}
+
+/* Styling for Classes */
+.wide{
+    padding: 1em;
+}
+
+.split{
+    border: 0.2em solid darkslategrey;
+    border-radius: 0.65em;
+    padding: 1em;
+    margin: 0.5em;
+}
+
+.row{
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+

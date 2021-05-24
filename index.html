@@ -4,10 +4,11 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 
   <title>Risk Management Calculator</title>
@@ -16,306 +17,188 @@
 <body>
   
   <header>
-    <h1 >Risk Management Calculator</h1>
+    <h1>Risk Management Calculator</h1>
   </header>
   
   <form name="PositionSizeCalculator">
 
-    <h2 >Position Size</h2>
+    <div class="container-fluid row">
+      <div id="Position" class="wide">
+        <h2>Position</h2>
 
-    <div class="form-group">
-      <p > 
-        <label>Account Currency: </label>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Account Currency</label>
+          <div class="col-sm-6">        
+            <select id="AccountCurrency" class="form-select" size="1" onchange="changePrimaryCurrency()">
+              <option value="AUD">AUD</option>
+              <option value="CAD">CAD</option>
+              <option value="CHF">CHF</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="JPY">JPY</option>
+              <option value="USD" selected="">USD</option>
+            </select>
+          </div>
+        </div>
 
-        <select size="1" name="AccountCurrency" onchange="changePrimaryCurrency()">
-          <option value="AUD">AUD</option>
-          <option value="CAD">CAD</option>
-          <option value="CHF">CHF</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="JPY">JPY</option>
-          <option value="USD" selected="">USD</option>
-        </select>
-      </p>
+        <!--
+        <p > 
+          <label> Balance: </label>        
+          <input class="form-input" size="7" type="number" min="0">
+        </p>
+        -->
 
-      <p > 
-        <label> Balance: </label>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Currency Pair</label>
+          <div class="col-sm-6">
+            <select id="CurrencyPair" class="form-select">
+              <option>AUDCAD</option>
+              <option>AUDCHF</option>
+              <option>AUDJPY</option>
+              <option>AUDNZD</option>
+              <option>AUDUSD</option>
+              <option>CADCHF</option>
+              <option>CADJPY</option>
+              <option>CHFJPY</option>
+              <option>EURAUD</option>
+              <option>EURCAD</option>
+              <option>EURCHF</option>
+              <option value="">EURCZK</option>
+              <option>EURDKK</option>
+              <option>EURGBP</option>
+              <option>EURHKD</option>
+              <option value="">EURHUF</option>
+              <option>EURJPY</option>
+              <option>EURNOK</option>
+              <option>EURNZD</option>
+              <option>EURPLN</option>
+              <option>EURSEK</option>
+              <option>EURTRY</option>
+              <option>EURUSD</option>
+              <option>GBPAUD</option>
+              <option>GBPCAD</option>
+              <option>GBPCHF</option>
+              <option>GBPDKK</option>
+              <option>GBPJPY</option>
+              <option>GBPNZD</option>
+              <option>GBPPLN</option>
+              <option>GBPSEK</option>
+              <option>GBPUSD</option>
+              <option>NZDCAD</option>
+              <option>NZDCHF</option>
+              <option>NZDJPY</option>
+              <option>NZDUSD</option>
+              <option>USDCAD</option>
+              <option>USDCHF</option>
+              <option>USDCZK</option>
+              <option>USDDKK</option>
+              <option>USDHKD</option>
+              <option>USDHUF</option>
+              <option>USDJPY</option>
+              <option>USDMXN</option>
+              <option>USDNOK</option>
+              <option>USDPLN</option>
+              <option value="">USDSAR</option>
+              <option>USDSEK</option>
+              <option>USDSGD</option>
+              <option value="">USDTHB</option>
+              <option>USDTRY</option>
+              <option>USDZAR</option>
+              <option>XAGUSD</option>
+              <option>XAUEUR</option>
+              <option>XAUUSD</option>
+            </select> 
+          </div>
+        </div>
+
+        <div class="form-group row" >
+          <label class="col-sm-6 col-form-label">Lot Size (Volume): </label>
+          <div class="col-sm-6">
+            <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step=".01">
+          </div>
+        </p>
+        </div>
+      </div>  
+    </div>
+
+    <div class="container-fluid row">
+      <div id="Margin" class="split col">
+        <h2>Margin Calculation</h2>
+
+        <div class="form-group row"> 
+            <label class="form-label">Leverage </label>
+            <div>
+              <select id="SelectedLeverage" class="form-select">
+                <option value="1:1">1:1</option>
+                <option value="1:2">1:2</option>
+                <option value="1:3">1:3</option>
+                <option value="1:4">1:4</option>
+                <option value="1:5">1:5</option>
+                <option value="1:10">1:10</option>
+                <option value="1:20">1:20</option>
+                <option value="1:50">1:50</option>
+                <option value="1:100">1:100</option>
+                <option value="1:200">1:200</option>
+                <option value="1:400">1:400</option>
+                <option value="1:500">1:500</option>
+                <option value="1:1000">1:1000</option>
+                <option value="1:2000">1:2000</option>
+                <option value="1:3000">1:3000</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="form-label">Margin </label>
+            <div>
+              <input id="MarginResult" class="form-control" disabled="" type="TEXT" name="MarginValue" value=""></div>
+        </div> 
+      </div>
+
+      <div id="Profits" class="split col">
+        <h2>Profit Calculation</h2>
+
+        <div class="form-group row">
+          <label class="form-label">Entry (Opening Price)</label>
+          <div>
+            <input id="EntryPrice" type="text" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="form-label">Exit (Closing Price)</label>
+          <div>
+            <input id="ExitPrice" type="text" class="form-control">
+          </div>
+        </div>
         
-        <input size="7" type="number" min="0">
-      </p>
+        <div class="form-group row">
+          <button id="BuySellButton" class="btn btn-danger" value="0" onclick="changeDirection()"> Buy/Sell </button>
+        </div>
 
-      <p > 
-        <label> Leverage :</label>
-
-        <select>
-          <option value="1:1">1:1</option>
-          <option value="1:2">1:2</option>
-          <option value="1:3">1:3</option>
-          <option value="1:4">1:4</option>
-          <option value="1:5">1:5</option>
-          <option value="1:10">1:10</option>
-          <option value="1:20">1:20</option>
-          <option value="1:50">1:50</option>
-          <option value="1:100">1:100</option>
-          <option value="1:200">1:200</option>
-          <option value="1:400">1:400</option>
-          <option value="1:500">1:500</option>
-          <option value="1:1000">1:1000</option>
-          <option value="1:2000">1:2000</option>
-          <option value="1:3000">1:3000</option>
-        </select>
-      </p>
-
-      <p >
-        <label>Lots (Volume): </label>
-
-        <input size="6" type="number" min="0.01" step=".01">
-      </p>
-
-      <p >
-        <input type="button" value="Calculate" id="">
-      </p>
-
-      <p >
-        <span style="background-color: #4bfd4ba6">
-          Margin: <input disabled="" type="TEXT" name="txtMarginCode" value="" size="5" maxlength="5">
-        </span>
-      </p>
-
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label class="form-label">Profit</label>
+            <div>
+              <input id="CalculatedProfit" type="text" class="form-control" disabled="">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label">Loss</label>
+            <div>
+              <input id="CalculatedLoss" type="text" class="form-control" disabled="">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </form>
-
-  <form name="ProfitCalculator">
-    
-    <h2 >Profit Calculator</h2>
-
-    <div class="form-group">
-      <p >
-        <label> Account Currency: </label>
-
-        <select size="1" name="cboPrimaryCurrency" onchange="changePrimaryCurrency()">
-          <option value="AUD">AUD</option>
-          <option value="CAD">CAD</option>
-          <option value="CHF">CHF</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="JPY">JPY</option>
-          <option selected="" value="USD">USD</option>
-        </select>
-      </p>
-
-      <p > 
-        <label>Currency Pair: </label>
-
-        <select size="1" name="cboCurrencyPair" onchange="changePair(this.options[this.selectedIndex].value)">
-          <option value="AUD/JPY">AUD/JPY</option>
-          <option value="AUD/NZD">AUD/NZD</option>
-          <option value="AUD/USD">AUD/USD</option>
-          <option value="CAD/JPY">CAD/JPY</option>
-          <option value="CHF/JPY">CHF/JPY</option>
-          <option value="EUR/AUD">EUR/AUD</option>
-          <option value="EUR/CAD">EUR/CAD</option>
-          <option value="EUR/CHF">EUR/CHF</option>
-          <option value="EUR/CZK">EUR/CZK</option>
-          <option value="EUR/DKK">EUR/DKK</option>
-          <option value="EUR/GBP">EUR/GBP</option>
-          <option value="EUR/HUF">EUR/HUF</option>
-          <option value="EUR/JPY">EUR/JPY</option>
-          <option value="EUR/NOK">EUR/NOK</option>
-          <option value="EUR/PLN">EUR/PLN</option>
-          <option value="EUR/SEK">EUR/SEK</option>
-          <option value="EUR/USD" selected="">EUR/USD</option>
-          <option value="GBP/CHF">GBP/CHF</option>
-          <option value="GBP/JPY">GBP/JPY</option>
-          <option value="GBP/USD">GBP/USD</option>
-          <option value="NZD/USD">NZD/USD</option>
-          <option value="USD/CAD">USD/CAD</option>
-          <option value="USD/CHF">USD/CHF</option>
-          <option value="USD/DKK">USD/DKK</option>
-          <option value="USD/HKD">USD/HKD</option>
-          <option value="USD/JPY">USD/JPY</option>
-          <option value="USD/MXN">USD/MXN</option>
-          <option value="USD/NOK">USD/NOK</option>
-          <option value="USD/PLN">USD/PLN</option>
-          <option value="USD/SAR">USD/SAR</option>
-          <option value="USD/SGD">USD/SGD</option>
-          <option value="USD/THB">USD/THB</option>
-          <option value="USD/ZAR">USD/ZAR</option>
-          <option value="XAG/USD">XAG/USD</option>
-          <option value="XAU/USD">XAU/USD</option>
-        </select>
-      </p>
-
-      <p > 
-        <label>Opening Price:</label>
-        <input type="TEXT" name="txtOpeningRate" size="20" maxlength="20">
-      </p>
-
-      <p >
-        <label>Closing Price: </label>
-        <input type="TEXT" name="txtClosingRate" size="20" maxlength="20"></font>
-      </p>
-
-      <p >
-        <input disabled="" type="TEXT" name="txtBaseCode" value="" size="3" maxlength="3" onchange="calculateProfit()">
-        /
-        <input disabled="" type="TEXT" name="txtPrimaryCode" value="" size="3" maxlength="3" onchange="calculateProfit()">
-        
-        <label>Exchange Rate: </label>
-        <input type="TEXT" name="txtQuotePrimary" size="6" maxlength="6" onchange="changeQuotePrimary()">
-      </p>
-
-      <p >  
-        <label>Action:</label>
-        <select name="cboAction" size="1" onchange="changeAction()">
-          <option value="BUY">Buy</option>
-          <option value="SELL">Sell</option>
-        </select>
-      </p>
-
-      <p >  
-        <label>Number Of Units:</label>
-        <input type="TEXT" name="txtUnits" size="20" maxlength="20"></font>
-        <font color="#FF0000">(1 Standard Lot = 100,000 Units)</font>
-      </p>
-      
-      <p >
-        <input type="BUTTON" value="Calculate" onclick="calculateProfit()">
-      </p>
-
-      <p >
-        <span style="background-color: #FFFF00">
-          Profit: <input disabled="" type="TEXT" name="txtProfitCode" value="" size="5" maxlength="7">
-        </span>
-      </p>
-
-      <p >
-        <input style="font-family: Verdana; color: #FF0000; font-weight: bold" type="TEXT" name="txtProfit" size="20"
-          maxlength="20">
-      </p>
-    </div>
-  </form>
-
-  <form name="FXTMProfitability">
-
-    <h2>Profitability Calculator</h2>
-      <!--
-      <div class="col-sm-6 calculator equalheight" style="height: 577px;"> 
-      -->
-
-    <div class="form-group">
-      <p >
-        <label>Currency pair:</label> 
-        <select name="from" class="from">
-          <option>AUDCAD</option>
-          <option>AUDCHF</option>
-          <option>AUDJPY</option>
-          <option>AUDNZD</option>
-          <option>AUDUSD</option>
-          <option>CADCHF</option>
-          <option>CADJPY</option>
-          <option>CHFJPY</option>
-          <option>EURAUD</option>
-          <option>EURCAD</option>
-          <option>EURCHF</option>
-          <option>EURDKK</option>
-          <option>EURGBP</option>
-          <option>EURHKD</option>
-          <option>EURJPY</option>
-          <option>EURNOK</option>
-          <option>EURNZD</option>
-          <option>EURPLN</option>
-          <option>EURSEK</option>
-          <option>EURTRY</option>
-          <option>EURUSD</option>
-          <option>GBPAUD</option>
-          <option>GBPCAD</option>
-          <option>GBPCHF</option>
-          <option>GBPDKK</option>
-          <option>GBPJPY</option>
-          <option>GBPNZD</option>
-          <option>GBPPLN</option>
-          <option>GBPSEK</option>
-          <option>GBPUSD</option>
-          <option>NZDCAD</option>
-          <option>NZDCHF</option>
-          <option>NZDJPY</option>
-          <option>NZDUSD</option>
-          <option>USDCAD</option>
-          <option>USDCHF</option>
-          <option>USDCZK</option>
-          <option>USDDKK</option>
-          <option>USDHKD</option>
-          <option>USDHUF</option>
-          <option>USDJPY</option>
-          <option>USDMXN</option>
-          <option>USDNOK</option>
-          <option>USDPLN</option>
-          <option>USDSEK</option>
-          <option>USDSGD</option>
-          <option>USDTRY</option>
-          <option>USDZAR</option>
-          <option>XAGUSD</option>
-          <option>XAUEUR</option>
-          <option>XAUUSD</option>
-        </select> 
-      </p>
-
-      <p >
-        <label>Buy or Sell:</label> 
-        <select name="buysell" class="buysell">
-          <option value="buy">buy</option>
-          <option value="sell">sell</option> 
-        </select> 
-      </p>
-
-      <p >
-        <label>Open price:</label> 
-        <input type="text" name="open_price" value="" class="open_price"> 
-      </p>
-
-      <p >
-        <label>Close price:</label> 
-          <input type="text" name="close_price" value="" class="close_price"> 
-      </p>
-
-      <p >
-        <label>Trade size (lots):</label> 
-          <input type="text" name="size" value="" class="size"> 
-      </p>
-
-      <p >
-        <label>Deposit currency:</label> 
-          <select name="to" class="to">
-            <option>EUR</option>
-            <option>USD</option>
-            <option>GBP</option>
-          </select>
-      </p>
-
-      <p >
-        <h2 class="result">€ 90.90248</h2>
-      </p>
-    </div>
-
-    </div>
-  </form>
-
-
 
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
