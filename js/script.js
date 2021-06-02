@@ -1,10 +1,20 @@
-calculateMargin(){
-    let margin;
-    let LotSize = document.getElementById("LotSize").innerHTML;
+const BaseCurrency = document.getElementById("AccountCurrency");
+const CurrencyPair = document.getElementById("CurrencyPair");
+const LotSize = document.getElementById("LotSize");
+
+function calculateMargin(){
+    /* 
+    Margin = (LotSize*100000)/Leverage * Exchange Rate
+    Exchange Rate = Account currency vs Quote Currency (import via api)
+    */
+    Leverage = document.getElementById("SelectedLeverage"); 
+    Margin = (LotSize * 100000) / Leverage;
+
+    document.getElementById("MarginResult").innerHTML = Margin;
 }
 
-changeDirection(){
-    let direction = document.getElementById("BuySellButton").innerHTML;
+function changeDirection(){
+    direction = document.getElementById("BuySellButton")s;
     if (direction == 1){
          //set button Red and text SELL
         return
@@ -13,7 +23,7 @@ changeDirection(){
     }
 }
 
-calculateProfitLoss(){
+function calculateProfitLoss(){
     //when button == BUY; Profit = Exit - Entry, Loss = Entry - Exit
     //when button == SELL; Profit = Entry - Exit, Loss = Exit - Entry
 }
