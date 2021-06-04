@@ -166,10 +166,10 @@
             </div>
           
             <div class="col-6 btn-group">
-              <input type="radio" class="btn-check" name="BuyButton" id="BuyRadioButton" autocomplete="off" checked />
+              <input type="radio" class="btn-check" name="BuyButton" id="BuyRadioButton" autocomplete="off" onclick="calculateBuy()" checked />
               <label class="btn btn-success" for="BuyButton">BUY</label>
             
-              <input type="radio" class="btn-check" name="SellButton" id="SellRadioButton" autocomplete="off" />
+              <input type="radio" class="btn-check" name="SellButton" id="SellRadioButton" autocomplete="off" onclick="calculateSell()" />
               <label class="btn btn-danger" for="SellButton">SELL</label>
             </div>
           
@@ -179,11 +179,11 @@
           <label class="form-label">Exit Price</label>
           <div class="col">
             <label class="form-label">Take Profit</label>
-            <input id="TakeProfit" type="text" class="form-control">
+            <input id="TakeProfit" type="text" class="form-control ExitPrice">
           </div>
           <div class="col">
             <label class="form-label">Stop Loss</label>
-            <input id="StopLoss" type="text" class="form-control">
+            <input id="StopLoss" type="text" class="form-control ExitPrice">
           </div>
         </div>
         
