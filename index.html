@@ -29,7 +29,7 @@
         <div class="form-group row">
           <label class="col-sm-6 col-form-label">Account Currency</label>
           <div class="col-sm-6">        
-            <select id="AccountCurrency" class="form-select" size="1" onchange="changePrimaryCurrency()">
+            <select id="AccountCurrency" class="form-select" size="1" onchange="setAccountCurrency()">
               <option value="AUD">AUD</option>
               <option value="CAD">CAD</option>
               <option value="CHF">CHF</option>
@@ -51,7 +51,7 @@
         <div class="form-group row">
           <label class="col-sm-6 col-form-label">Currency Pair</label>
           <div class="col-sm-6">
-            <select id="CurrencyPair" class="form-select">
+            <select id="CurrencyPair" class="form-select" onselect="selectedCurrency()">
               <option>AUDCAD</option>
               <option>AUDCHF</option>
               <option>AUDJPY</option>
@@ -121,6 +121,8 @@
       </div>  
     </div>
 
+    <!-- End of Row -->
+
     <div class="container-fluid row">
       <div id="Margin" class="split col">
         <h2>Margin Calculation</h2>
@@ -152,7 +154,7 @@
         <div class="form-group row">
             <label class="form-label">Margin </label>
             <div>
-              <input id="MarginResult" class="form-control" disabled="" type="TEXT" name="MarginValue" value=""></div>
+              <input id="MarginResult" class="form-control" type="number" disabled="" ></div>
         </div> 
       </div>
 
@@ -166,10 +168,10 @@
             </div>
           
             <div class="col-6 btn-group">
-              <input type="radio" class="btn-check" name="BuyButton" id="BuyRadioButton" autocomplete="off" onclick="calculateBuy()" checked />
+              <input id="BuyRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss()" />
               <label class="btn btn-success" for="BuyButton">BUY</label>
             
-              <input type="radio" class="btn-check" name="SellButton" id="SellRadioButton" autocomplete="off" onclick="calculateSell()" />
+              <input id="SellRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss()" />
               <label class="btn btn-danger" for="SellButton">SELL</label>
             </div>
           
@@ -179,11 +181,11 @@
           <label class="form-label">Exit Price</label>
           <div class="col">
             <label class="form-label">Take Profit</label>
-            <input id="TakeProfit" type="text" class="form-control ExitPrice">
+            <input id="TakeProfit" name="LimitValue" type="text" class="form-control ExitPrice">
           </div>
           <div class="col">
             <label class="form-label">Stop Loss</label>
-            <input id="StopLoss" type="text" class="form-control ExitPrice">
+            <input id="StopLoss" name="LimitValue" type="text" class="form-control ExitPrice">
           </div>
         </div>
         
@@ -192,13 +194,13 @@
           <div class="col-sm-6">
             <label class="form-label">Profit</label>
             <div>
-              <input id="CalculatedProfit" type="text" class="form-control" disabled="">
+              <input name="result" id="CalculatedProfit" type="text" class="form-control" disabled="">
             </div>
           </div>
           <div class="col-sm-6">
             <label class="form-label">Loss</label>
             <div>
-              <input id="CalculatedLoss" type="text" class="form-control" disabled="">
+              <input name="result" id="CalculatedLoss" type="text" class="form-control" disabled="">
             </div>
           </div>
         </div>
