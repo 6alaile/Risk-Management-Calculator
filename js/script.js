@@ -16,42 +16,58 @@ function calculateMargin(){
 */
 
 function calculateMargin(LotSize, Leverage){
-    Leverage = document.getElementById("SelectedLeverage");
-    Margin = (LotSize * 100000) / Leverage;
+    var Leverage = document.getElementById("SelectedLeverage");
+    var Margin = (LotSize * 100000) / Leverage;
     return Margin;
+
+    document.getElementById("MarginResult").innerHTML = Margin;
 }
-document.getElementById("MarginResult").innerHTML = calculateMargin(LotSize, Leverage);
 
 
+// var TPSL = document.getElementsByName("LimitValue");
 
-var EntryPrice = document.getElementById("EntryPrice");
-var BuySellButton = {                                       //document.getElementsByName("BuySellButton")
+/*
+var calculatedProfitLoss = document.getElementsByName("result");
+
+var Profit = document.getElementById("CalculatedProfit"); 
+var Loss = document.getElementById("CalculatedLoss");       
+*/
+
+
+function ProfitLoss(BuySellButton){
+    var EntryPrice = document.getElementById("EntryPrice");
+
+    var BuySellButton = {                                       //document.getElementsByName("BuySellButton")
         Buy = document.getElementById("BuyRadioButton"),
         Sell = document.getElementById("SellRadioButton")
     }
 
-var TakeProfit = document.getElementById("TakeProfit");     // var TPSL = document.getElementsByName("LimitValue");
-var StopLoss = document.getElementById("StopLoss");         // var TPSL = document.getElementsByName("LimitValue");
-
-var Profit = document.getElementById("CalculatedProfit");   // var calculatedProfitLoss = document.getElementsByName("result");
-var Loss = document.getElementById("CalculatedLoss");       // var calculatedProfitLoss = document.getElementsByName("result");
-
-function ProfitLoss(BuySellButton){
-    if(BuySellButton = Buy){
-        //BuyRadioButton (TakeProfit > EntryPrice > StopLoss): Profit = TakeProfit - Entry, Loss = Entry - TakeProfit;
+    var TakeProfit = document.getElementById("TakeProfit");     // var TPSL = document.getElementsByName("LimitValue");
+    var StopLoss = document.getElementById("StopLoss"); 
+    
+    var Profit;
+    var Loss;
+    
+    if(BuySellButton == Buy){
+        //BuyRadioButton (TakeProfit > EntryPrice > StopLoss): Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
         Profit = TakeProfit - EntryPrice;
-        Loss = EntryPrice - TakeProfit; 
-        return;
-    } 
-    else if (BuySellButton = Sell) {
-        //SellRadioButton (StopLoss > EntryPrice > TakeProfit): Profit = Entry - TakeProfit, Loss = TakeProfit - Entry;
+        Loss = EntryPrice - StopLoss;
 
-        return;
+        document.getElementById("CalculatedProfit").innerHTML = Profit, 
+        document.getElementById("CalculatedLoss").innerHTML = Loss;
+    } 
+    else if (Sell) {
+        //SellRadioButton (StopLoss > EntryPrice > TakeProfit): Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
+        Profit = EntryPrice - TakeProfit;
+        Loss = StopLoss - EntryPrice;
+        return Profit, Loss;
     } 
     else {
 
-        return;
+        return Profit, Loss;
     }
+    // document.getElementById("CalculatedProfit").innerHTML = Profit;
+    // document.getElementById("CalculatedLoss").innerHTML = Loss;
 };
 
 

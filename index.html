@@ -114,7 +114,7 @@
         <div class="form-group row" >
           <label class="col-sm-6 col-form-label">Lot Size (Volume): </label>
           <div class="col-sm-6">
-            <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step=".01">
+            <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step=".01" onchange="calculateMargin()">
           </div>
         </p>
         </div>
@@ -122,6 +122,7 @@
     </div>
 
     <!-- End of Row -->
+    <!-- Margin Calculator -->
 
     <div class="container-fluid row">
       <div id="Margin" class="split col">
@@ -154,20 +155,23 @@
         <div class="form-group row">
             <label class="form-label">Margin </label>
             <div>
-              <input id="MarginResult" class="form-control" type="number" disabled="" ></div>
+              <input id="MarginResult" class="form-control" type="number" disabled=""></div>
         </div> 
       </div>
 
+      <!-- End of Margin Calculator -->
+      <!-- Profits Calculator -->
+      
       <div id="Profits" class="split col">
         <h2>Profit Calculation</h2>
 
         <div class="form-group row">
-          <label class="form-label">Entry Price</label>
-            <div class="col-6">
-              <input id="EntryPrice" type="text" class="form-control">
+          <label class="form-label">Entry</label>
+            <div class="">
+              <input id="EntryPrice" type="number" class="form-control" min="0.00001" step="0.00001">
             </div>
           
-            <div class="col-6 btn-group">
+            <div class="btn-group">
               <input id="BuyRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss(Buy)" />
               <label class="btn btn-success" for="BuyButton">BUY</label>
             
@@ -178,14 +182,14 @@
         </div>
 
         <div class="form-group row">
-          <label class="form-label">Exit Price</label>
-          <div class="col">
+          <label class="form-label">Exit</label>
+          <div class="">
             <label class="form-label">Take Profit</label>
-            <input id="TakeProfit" name="LimitValue" type="text" class="form-control ExitPrice">
+            <input id="TakeProfit" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001">
           </div>
-          <div class="col">
+          <div class="">
             <label class="form-label">Stop Loss</label>
-            <input id="StopLoss" name="LimitValue" type="text" class="form-control ExitPrice">
+            <input id="StopLoss" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001">
           </div>
         </div>
         
@@ -194,13 +198,13 @@
           <div class="col-sm-6">
             <label class="form-label">Profit</label>
             <div>
-              <input name="result" id="CalculatedProfit" type="text" class="form-control" disabled="">
+              <input name="result" id="CalculatedProfit" type="number" class="form-control" disabled="" step="0.01">
             </div>
           </div>
           <div class="col-sm-6">
             <label class="form-label">Loss</label>
             <div>
-              <input name="result" id="CalculatedLoss" type="text" class="form-control" disabled="">
+              <input name="result" id="CalculatedLoss" type="number" class="form-control" disabled="" step="0.01">
             </div>
           </div>
         </div>
