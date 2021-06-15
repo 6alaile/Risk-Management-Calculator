@@ -1,8 +1,8 @@
-const AccountCurrency = document.getElementById("AccountCurrency");
-const CurrencyPair = document.getElementById("CurrencyPair");
-const LotSize = document.getElementById("LotSize");
+var AccountCurrency = document.getElementById("AccountCurrency");
+var CurrencyPair = document.getElementById("CurrencyPair");
+var AccountBalance = document.getElementById("AccountBalance").value;
 
-// Function to calculate MarginRequired to Open a Position
+// Function to calculate Margin Required to Open a Position
 
 /*
 First define the CurrencyPair being traded, this determines the Exchange Rate used.
@@ -16,30 +16,46 @@ To convert this into the selected AccountCurrency, the QuoteMargin is multiplied
 the exchange rate of the Quote Currency to the AccountCurrency.
 
 AccountMargin = QuoteMargin * Exchange Rate[Quote Currency/Account Currency]
+*/
 
+
+function calculateMargin(){
+    var LotSize = document.getElementById("LotSize").value;
+    var Leverage = document.getElementById("SelectedLeverage").value;
+    
+    var QuoteMargin = ((LotSize * 100000) / Leverage) //* CurrencyPair;
+    // console.log(QuoteMargin);
+
+    // var AccountMargin = QuoteMargin * ExchangeRate;
+
+    document.getElementById("AccountMargin").value = QuoteMargin;
+}
+
+//
+
+/*
 Finally to determine if the defined account balance can open the position based on the
 margin required, compare the AccountBalance to the AccountMargin. The AccountMargin 
 textbox should turn red if larger than the account Balance, and green if less than. 
 
 AccountBalance >= AccountMargin {Green}, AccountBalance <= AccountMargin {Red}
-
 */
-
-function calculateMargin(){
-    var Leverage = document.getElementById("SelectedLeverage").value;
-    var QuoteMargin = ((LotSize * 100000) / Leverage) * CurrencyPair;
-
-    var AccountMargin = QuoteMargin * ExchangeRate;
-
-    document.getElementById("MarginResult").innerHTML = AccountMargin;
-};
-
-function compareAccountBalance(){
+/*
+function compareAccount(){
     if (AccountMargin >= AccountBalance){
-        return Red;
+        document.getElementById("AccountMargin").style;
     }else if(AccountMargin <= AccountBalance){
         return Green;
     }
+};
+*/
+// Function to calculate the value of one pip
+
+/**/
+function valuePerPip(){
+    var OnePip = LotSize/ExchangeRate ;
+    
+    document.getElementById("PipValue").innerHTML = OnePip;
 };
 
 //Function to determine the profit and/or loss of a position
@@ -60,19 +76,20 @@ Convert the profit or loss into the account currency:
 AccountProfit = Profit * QuoteCurrency/AccountCurrency
 
 Then print the Profit or Loss into the relevant element.
-
 */
-
 function ProfitLoss(BuySellButton){
 
-    BuySellButton = document.getElementsByName("BuySellButton");
+    BuySellButton = {
+        Buy : document.getElementById("BuyRadioButton"),
+        Sell : document.getElementById("SellRadioButton")
+    };
 
     var EntryPrice = document.getElementById("EntryPrice").value;
     var TakeProfit = document.getElementById("TakeProfit").value;
     var StopLoss = document.getElementById("StopLoss").value; 
     
-    var AccountProfit;
-    var AccountLoss;
+    let AccountProfit;
+    let AccountLoss;
     
     while(BuySellButton === Buy){
         //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
