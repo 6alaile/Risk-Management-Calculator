@@ -5,22 +5,63 @@ const LotSize = document.getElementById("LotSize");
 // Function to calculate MarginRequired to Open a Position
 
 /*
-First define the AccountCurrency as the margin will be returned in this currency.
-Next define the CurrencyPair being traded, this will determine the conversion currency.
-Then define the LotSize of position, this will give the amount of margin required.
+First define the CurrencyPair being traded, this determines the Exchange Rate used.
+Next define the LotSize of position and account Leverage; plug into the below formula.
 
+QuoteMargin = Position Size/Account Leverage * Exchange Rate
+            = ((LotSize * 100000)/Leverage) * CurrencyPair
 
-Margin = Lot Size/Leverage * Exchange rate of QuoteCurerncy
+As indicated above, the margin will be calculated in the Quote Currency of the pair.
+To convert this into the selected AccountCurrency, the QuoteMargin is multiplied by
+the exchange rate of the Quote Currency to the AccountCurrency.
+
+AccountMargin = QuoteMargin * Exchange Rate[Quote Currency/Account Currency]
+
+Finally to determine if the defined account balance can open the position based on the
+margin required, compare the AccountBalance to the AccountMargin. The AccountMargin 
+textbox should turn red if larger than the account Balance, and green if less than. 
+
+AccountBalance >= AccountMargin {Green}, AccountBalance <= AccountMargin {Red}
 
 */
 
-function calculateMargin(LotSize, Leverage){
+function calculateMargin(){
     var Leverage = document.getElementById("SelectedLeverage").value;
-    var MarginRequired = (LotSize * 100000) / Leverage;
+    var QuoteMargin = ((LotSize * 100000) / Leverage) * CurrencyPair;
 
-    document.getElementById("MarginResult").innerHTML = MarginRequired;
-}
+    var AccountMargin = QuoteMargin * ExchangeRate;
 
+    document.getElementById("MarginResult").innerHTML = AccountMargin;
+};
+
+function compareAccountBalance(){
+    if (AccountMargin >= AccountBalance){
+        return Red;
+    }else if(AccountMargin <= AccountBalance){
+        return Green;
+    }
+};
+
+//Function to determine the profit and/or loss of a position
+
+/*
+First determine which of the BUY or SELL radio buttons have been selected.
+Next determine the values of the EntryPrice, TakeProfit and StopLoss.
+
+If BUY is selected:
+Profit = TakeProfit - EntryPrice
+Loss = EntryPrice - StopLoss
+
+If SELL is selected:
+Profit = EntryPrice - TakeProfit
+Loss = StopLoss - EntryPrice
+
+Convert the profit or loss into the account currency:
+AccountProfit = Profit * QuoteCurrency/AccountCurrency
+
+Then print the Profit or Loss into the relevant element.
+
+*/
 
 function ProfitLoss(BuySellButton){
 
@@ -30,30 +71,35 @@ function ProfitLoss(BuySellButton){
     var TakeProfit = document.getElementById("TakeProfit").value;
     var StopLoss = document.getElementById("StopLoss").value; 
     
-    var Profit;
-    var Loss;
+    var AccountProfit;
+    var AccountLoss;
     
     if(BuySellButton === Buy){
-        //BuyRadioButton (TakeProfit > EntryPrice > StopLoss): Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
-        Profit = TakeProfit - EntryPrice;
-        Loss = EntryPrice - StopLoss;
+        //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
+        var Profit = TakeProfit - EntryPrice;
+        var Loss = EntryPrice - StopLoss;
 
-        console.log(Profit);
+        AccountProfit = Profit * ExchangeRate;
+        AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").innerHTML = Profit, 
-        document.getElementById("CalculatedLoss").innerHTML = Loss;
+        document.getElementById("CalculatedProfit").innerHTML.value = AccountProfit, 
+        document.getElementById("CalculatedLoss").innerHTML.value = AccountLoss;
     } 
     else if (BuySellButton === Sell) {
-        //SellRadioButton (StopLoss > EntryPrice > TakeProfit): Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
-        Profit = EntryPrice - TakeProfit;
-        Loss = StopLoss - EntryPrice;
+        //SellRadioButton: Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
+        var Profit = EntryPrice - TakeProfit;
+        var Loss = StopLoss - EntryPrice;
 
+        AccountProfit = Profit * ExchangeRate;
+        AccountLoss = Loss * ExchangeRate;
+        
         document.getElementById("CalculatedProfit").innerHTML = Profit, 
         document.getElementById("CalculatedLoss").innerHTML = Loss;
     } 
     else {
-
-        return Profit, Loss;
+        return null;
     }
+
+
 };
 

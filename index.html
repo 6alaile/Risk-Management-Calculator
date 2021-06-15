@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -36,17 +36,18 @@
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
               <option value="JPY">JPY</option>
+              <option value="TZS">TZS</option>
               <option value="USD" selected="">USD</option>
             </select>
           </div>
         </div>
 
-        <!--
-        <p > 
-          <label> Balance: </label>        
-          <input class="form-input" size="7" type="number" min="0">
-        </p>
-        -->
+        <div class="form-group row"> 
+          <label class="col-sm-6 col-form-label">Account Balance</label>
+          <div class="col-sm-6">
+            <input class="form-control" size="7" type="number" min="0" step="0.01">
+          </div>
+        </div>
 
         <div class="form-group row">
           <label class="col-sm-6 col-form-label">Currency Pair</label>
@@ -63,26 +64,15 @@
               <option>EURAUD</option>
               <option>EURCAD</option>
               <option>EURCHF</option>
-              <option value="">EURCZK</option>
-              <option>EURDKK</option>
               <option>EURGBP</option>
-              <option>EURHKD</option>
-              <option value="">EURHUF</option>
               <option>EURJPY</option>
-              <option>EURNOK</option>
               <option>EURNZD</option>
-              <option>EURPLN</option>
-              <option>EURSEK</option>
-              <option>EURTRY</option>
               <option>EURUSD</option>
               <option>GBPAUD</option>
               <option>GBPCAD</option>
               <option>GBPCHF</option>
-              <option>GBPDKK</option>
               <option>GBPJPY</option>
               <option>GBPNZD</option>
-              <option>GBPPLN</option>
-              <option>GBPSEK</option>
               <option>GBPUSD</option>
               <option>NZDCAD</option>
               <option>NZDCHF</option>
@@ -90,22 +80,11 @@
               <option>NZDUSD</option>
               <option>USDCAD</option>
               <option>USDCHF</option>
-              <option>USDCZK</option>
-              <option>USDDKK</option>
-              <option>USDHKD</option>
-              <option>USDHUF</option>
               <option>USDJPY</option>
               <option>USDMXN</option>
               <option>USDNOK</option>
-              <option>USDPLN</option>
-              <option value="">USDSAR</option>
-              <option>USDSEK</option>
-              <option>USDSGD</option>
-              <option value="">USDTHB</option>
-              <option>USDTRY</option>
               <option>USDZAR</option>
               <option>XAGUSD</option>
-              <option>XAUEUR</option>
               <option>XAUUSD</option>
             </select> 
           </div>
@@ -195,16 +174,16 @@
         
 
         <div class="form-group row">
-          <div class="col-sm-6">
+          <div class="">
             <label class="form-label">Profit</label>
             <div>
-              <input name="result" id="CalculatedProfit" type="number" class="form-control" disabled="" step="0.01">
+              <input name="result" id="CalculatedProfit" type="number" class="form-control" onchange="ProfitLoss()" step="0.01">
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="">
             <label class="form-label">Loss</label>
             <div>
-              <input name="result" id="CalculatedLoss" type="number" class="form-control" disabled="" step="0.01">
+              <input name="result" id="CalculatedLoss" type="number" class="form-control" onchange="ProfitLoss()" step="0.01">
             </div>
           </div>
         </div>
