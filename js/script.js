@@ -92,9 +92,9 @@ function ProfitLoss(BuySellButton){
     let AccountLoss;
     
     if(BuySellButton.Buy){
-        //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
+        
         let Profit = (TakeProfit - EntryPrice) * 100000;
-        let Loss = (EntryPrice - StopLoss) * 100000;
+        let Loss = (StopLoss - EntryPrice) * 100000;
 
         //AccountProfit = Profit * ExchangeRate;
         //AccountLoss = Loss * ExchangeRate;
@@ -103,9 +103,9 @@ function ProfitLoss(BuySellButton){
         document.getElementById("CalculatedLoss").value = Loss;
     } 
     else if(BuySellButton.Sell) {
-        //SellRadioButton: Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
+
         let Profit = (EntryPrice - TakeProfit) * 100000;
-        let Loss = (StopLoss - EntryPrice) * 100000;
+        let Loss = (EntryPrice - StopLoss) * 100000;
 
         //AccountProfit = Profit * ExchangeRate;
         //AccountLoss = Loss * ExchangeRate;
