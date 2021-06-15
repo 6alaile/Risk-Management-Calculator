@@ -80,8 +80,8 @@ Then print the Profit or Loss into the relevant element.
 function ProfitLoss(BuySellButton){
 
     BuySellButton = {
-        Buy : document.getElementById("BuyRadioButton"),
-        Sell : document.getElementById("SellRadioButton")
+        Buy : document.getElementById("BuyRadioButton").checked,
+        Sell : document.getElementById("SellRadioButton").checked
     };
 
     var EntryPrice = document.getElementById("EntryPrice").value;
@@ -93,8 +93,8 @@ function ProfitLoss(BuySellButton){
     
     if(BuySellButton.Buy){
         //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
-        var Profit = TakeProfit - EntryPrice;
-        var Loss = EntryPrice - StopLoss;
+        let Profit = (TakeProfit - EntryPrice) * 100000;
+        let Loss = (EntryPrice - StopLoss) * 100000;
 
         //AccountProfit = Profit * ExchangeRate;
         //AccountLoss = Loss * ExchangeRate;
@@ -104,8 +104,8 @@ function ProfitLoss(BuySellButton){
     } 
     else if(BuySellButton.Sell) {
         //SellRadioButton: Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
-        var Profit = EntryPrice - TakeProfit;
-        var Loss = StopLoss - EntryPrice;
+        let Profit = (EntryPrice - TakeProfit) * 100000;
+        let Loss = (StopLoss - EntryPrice) * 100000;
 
         //AccountProfit = Profit * ExchangeRate;
         //AccountLoss = Loss * ExchangeRate;
