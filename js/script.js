@@ -24,9 +24,9 @@ function calculateMargin(){
     var Leverage = document.getElementById("SelectedLeverage").value;
     
     var QuoteMargin = ((LotSize * 100000) / Leverage) //* CurrencyPair;
-    // console.log(QuoteMargin);
 
     // var AccountMargin = QuoteMargin * ExchangeRate;
+    // console.log(AccountMargin);
 
     document.getElementById("AccountMargin").value = QuoteMargin;
 }
@@ -91,26 +91,29 @@ function ProfitLoss(BuySellButton){
     let AccountProfit;
     let AccountLoss;
     
-    while(BuySellButton === Buy){
+    if(BuySellButton.Buy){
         //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
         var Profit = TakeProfit - EntryPrice;
         var Loss = EntryPrice - StopLoss;
 
-        AccountProfit = Profit * ExchangeRate;
-        AccountLoss = Loss * ExchangeRate;
+        //AccountProfit = Profit * ExchangeRate;
+        //AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").innerHTML.value = AccountProfit, 
-        document.getElementById("CalculatedLoss").innerHTML.value = AccountLoss;
+        document.getElementById("CalculatedProfit").value = Profit, 
+        document.getElementById("CalculatedLoss").value = Loss;
     } 
-    while(BuySellButton === Sell) {
+    else if(BuySellButton.Sell) {
         //SellRadioButton: Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
         var Profit = EntryPrice - TakeProfit;
         var Loss = StopLoss - EntryPrice;
 
-        AccountProfit = Profit * ExchangeRate;
-        AccountLoss = Loss * ExchangeRate;
+        //AccountProfit = Profit * ExchangeRate;
+        //AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").innerHTML = Profit, 
-        document.getElementById("CalculatedLoss").innerHTML = Loss;
+        document.getElementById("CalculatedProfit").value = Profit, 
+        document.getElementById("CalculatedLoss").value = Loss;
     } 
+    else{
+        return null;
+    }
 };

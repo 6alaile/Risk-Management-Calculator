@@ -140,7 +140,7 @@
         <div class="form-group row">
             <label class="form-label">Pip Value </label>
             <div>
-              <input id="PipValue" class="form-control" type="number" disabled=""></div>
+              <input id="PipValue" class="form-control" type="text" disabled=""></div>
         </div> 
       </div>
 
@@ -153,14 +153,14 @@
         <div class="form-group row">
           <label class="form-label">Entry</label>
             <div class="">
-              <input id="EntryPrice" type="number" class="form-control" min="0.00001" step="0.00001">
+              <input id="EntryPrice" type="number" class="form-control" min="0.00001" step="0.00001" onchange="ProfitLoss()">
             </div>
           
             <div class="btn-group">
-              <input id="BuyRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss(Buy)" />
+              <input id="BuyRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" value="BUY" onchange="ProfitLoss(Buy)" />
               <label class="btn btn-success" for="BuyButton">BUY</label>
             
-              <input id="SellRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onchange="ProfitLoss(Sell)" />
+              <input id="SellRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" value="SELL" onchange="ProfitLoss(Sell)" />
               <label class="btn btn-danger" for="SellButton">SELL</label>
             </div>
           
@@ -170,11 +170,11 @@
           <label class="form-label">Exit</label>
           <div class="">
             <label class="form-label">Take Profit</label>
-            <input id="TakeProfit" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001">
+            <input id="TakeProfit" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001" onchange="ProfitLoss()">
           </div>
           <div class="">
             <label class="form-label">Stop Loss</label>
-            <input id="StopLoss" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001">
+            <input id="StopLoss" name="LimitValue" type="number" class="form-control ExitPrice" min="0.00001" step="0.00001" onchange="ProfitLoss()">
           </div>
         </div>
         
