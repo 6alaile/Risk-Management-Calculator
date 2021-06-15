@@ -45,14 +45,14 @@
         <div class="form-group row"> 
           <label class="col-sm-6 col-form-label">Account Balance</label>
           <div class="col-sm-6">
-            <input class="form-control" size="7" type="number" min="0" step="0.01">
+            <input class="form-control" size="7" type="number" min="0" step="0.01" onchange="calculateMargin(); ProfitLoss()">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-6 col-form-label">Currency Pair</label>
           <div class="col-sm-6">
-            <select id="CurrencyPair" class="form-select" onselect="selectedCurrency()">
+            <select id="CurrencyPair" class="form-select" onchange="selectedCurrency()">
               <option>AUDCAD</option>
               <option>AUDCHF</option>
               <option>AUDJPY</option>
@@ -154,7 +154,7 @@
               <input id="BuyRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss(Buy)" />
               <label class="btn btn-success" for="BuyButton">BUY</label>
             
-              <input id="SellRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onclick="ProfitLoss(Sell)" />
+              <input id="SellRadioButton" class="btn-check" name="BuySellButton" type="radio" autocomplete="off" onchange="ProfitLoss(Sell)" />
               <label class="btn btn-danger" for="SellButton">SELL</label>
             </div>
           

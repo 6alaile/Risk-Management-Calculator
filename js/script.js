@@ -74,7 +74,7 @@ function ProfitLoss(BuySellButton){
     var AccountProfit;
     var AccountLoss;
     
-    if(BuySellButton === Buy){
+    while(BuySellButton === Buy){
         //BuyRadioButton: Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
         var Profit = TakeProfit - EntryPrice;
         var Loss = EntryPrice - StopLoss;
@@ -85,21 +85,15 @@ function ProfitLoss(BuySellButton){
         document.getElementById("CalculatedProfit").innerHTML.value = AccountProfit, 
         document.getElementById("CalculatedLoss").innerHTML.value = AccountLoss;
     } 
-    else if (BuySellButton === Sell) {
+    while(BuySellButton === Sell) {
         //SellRadioButton: Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
         var Profit = EntryPrice - TakeProfit;
         var Loss = StopLoss - EntryPrice;
 
         AccountProfit = Profit * ExchangeRate;
         AccountLoss = Loss * ExchangeRate;
-        
+
         document.getElementById("CalculatedProfit").innerHTML = Profit, 
         document.getElementById("CalculatedLoss").innerHTML = Loss;
     } 
-    else {
-        return null;
-    }
-
-
 };
-
