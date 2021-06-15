@@ -1,89 +1,59 @@
 const AccountCurrency = document.getElementById("AccountCurrency");
-function setAccountCurrency();
-
 const CurrencyPair = document.getElementById("CurrencyPair");
-function selectedCurrency();
-
 const LotSize = document.getElementById("LotSize");
 
-/*
-calculate margin required to open position
+// Function to calculate MarginRequired to Open a Position
 
-function calculateMargin(){
-    Exchange Rate = Account currency vs Quote Currency (import via api)
-    Margin = ((LotSize*100000)/Leverage) * Exchange Rate
-}
+/*
+First define the AccountCurrency as the margin will be returned in this currency.
+Next define the CurrencyPair being traded, this will determine the conversion currency.
+Then define the LotSize of position, this will give the amount of margin required.
+
+
+Margin = Lot Size/Leverage * Exchange rate of QuoteCurerncy
+
 */
 
 function calculateMargin(LotSize, Leverage){
-    var Leverage = document.getElementById("SelectedLeverage");
-    var Margin = (LotSize * 100000) / Leverage;
-    return Margin;
+    var Leverage = document.getElementById("SelectedLeverage").value;
+    var MarginRequired = (LotSize * 100000) / Leverage;
 
-    document.getElementById("MarginResult").innerHTML = Margin;
+    document.getElementById("MarginResult").innerHTML = MarginRequired;
 }
 
 
-// var TPSL = document.getElementsByName("LimitValue");
-
-/*
-var calculatedProfitLoss = document.getElementsByName("result");
-
-var Profit = document.getElementById("CalculatedProfit"); 
-var Loss = document.getElementById("CalculatedLoss");       
-*/
-
-
 function ProfitLoss(BuySellButton){
-    var EntryPrice = document.getElementById("EntryPrice");
 
-    var BuySellButton = {                                       //document.getElementsByName("BuySellButton")
-        Buy = document.getElementById("BuyRadioButton"),
-        Sell = document.getElementById("SellRadioButton")
-    }
+    BuySellButton = document.getElementsByName("BuySellButton");
 
-    var TakeProfit = document.getElementById("TakeProfit");     // var TPSL = document.getElementsByName("LimitValue");
-    var StopLoss = document.getElementById("StopLoss"); 
+    var EntryPrice = document.getElementById("EntryPrice").value;
+    var TakeProfit = document.getElementById("TakeProfit").value;
+    var StopLoss = document.getElementById("StopLoss").value; 
     
     var Profit;
     var Loss;
     
-    if(BuySellButton == Buy){
+    if(BuySellButton === Buy){
         //BuyRadioButton (TakeProfit > EntryPrice > StopLoss): Profit = TakeProfit - Entry, Loss = Entry - StopLoss;
         Profit = TakeProfit - EntryPrice;
         Loss = EntryPrice - StopLoss;
 
+        console.log(Profit);
+
         document.getElementById("CalculatedProfit").innerHTML = Profit, 
         document.getElementById("CalculatedLoss").innerHTML = Loss;
     } 
-    else if (Sell) {
+    else if (BuySellButton === Sell) {
         //SellRadioButton (StopLoss > EntryPrice > TakeProfit): Profit = Entry - TakeProfit, Loss = StopLoss - Entry;
         Profit = EntryPrice - TakeProfit;
         Loss = StopLoss - EntryPrice;
-        return Profit, Loss;
+
+        document.getElementById("CalculatedProfit").innerHTML = Profit, 
+        document.getElementById("CalculatedLoss").innerHTML = Loss;
     } 
     else {
 
         return Profit, Loss;
     }
-    // document.getElementById("CalculatedProfit").innerHTML = Profit;
-    // document.getElementById("CalculatedLoss").innerHTML = Loss;
 };
 
-
-/* 
-function calculateProfitLoss(EntryPrice, TakeProfit, StopLoss){
-    while (button selected = buyradiobutton){
-        Profit = TakeProfit - EntryPrice;
-        Loss = EntryPrice - StopLoss;
-    }
-    while (button selected = sellradiobutton){
-        Profit = EntryPrice - TakeProfit;
-        Loss = StopLoss - EntryPrice;
-    }
-
-    return ;
-
-    write result into CalculatedProfit & CalcuatedLoss (disabled input fields)
-}
-*/
