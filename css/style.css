@@ -18,6 +18,10 @@ label{
     padding: 0.5em;
 }
 
+input, select{
+    text-align: center;
+}
+
 /* Styling for Classes */
 .wide{
     padding: 1em;

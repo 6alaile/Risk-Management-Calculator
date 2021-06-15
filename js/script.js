@@ -65,17 +65,15 @@ First determine which of the BUY or SELL radio buttons have been selected.
 Next determine the values of the EntryPrice, TakeProfit and StopLoss.
 
 If BUY is selected:
-Profit = TakeProfit - EntryPrice
-Loss = EntryPrice - StopLoss
+Profit = TakeProfit - EntryPrice, Loss = StopLoss - EntryPrice
 
 If SELL is selected:
-Profit = EntryPrice - TakeProfit
-Loss = StopLoss - EntryPrice
+Profit = EntryPrice - TakeProfit, Loss = EntryPrice - StopLoss
 
-Convert the profit or loss into the account currency:
+Then onvert the profit/loss into the account currency:
 AccountProfit = Profit * QuoteCurrency/AccountCurrency
 
-Then print the Profit or Loss into the relevant element.
+Finally print the AccountProfit or AccountLoss into the form.
 */
 function ProfitLoss(BuySellButton){
 
@@ -88,16 +86,16 @@ function ProfitLoss(BuySellButton){
     var TakeProfit = document.getElementById("TakeProfit").value;
     var StopLoss = document.getElementById("StopLoss").value; 
     
-    let AccountProfit;
-    let AccountLoss;
+    var AccountProfit;
+    var AccountLoss;
     
     if(BuySellButton.Buy){
-        
+
         let Profit = (TakeProfit - EntryPrice) * 100000;
         let Loss = (StopLoss - EntryPrice) * 100000;
 
-        //AccountProfit = Profit * ExchangeRate;
-        //AccountLoss = Loss * ExchangeRate;
+        //let AccountProfit = Profit * ExchangeRate;
+        //let AccountLoss = Loss * ExchangeRate;
 
         document.getElementById("CalculatedProfit").value = Profit, 
         document.getElementById("CalculatedLoss").value = Loss;
@@ -107,8 +105,8 @@ function ProfitLoss(BuySellButton){
         let Profit = (EntryPrice - TakeProfit) * 100000;
         let Loss = (EntryPrice - StopLoss) * 100000;
 
-        //AccountProfit = Profit * ExchangeRate;
-        //AccountLoss = Loss * ExchangeRate;
+        //let AccountProfit = Profit * ExchangeRate;
+        //let AccountLoss = Loss * ExchangeRate;
 
         document.getElementById("CalculatedProfit").value = Profit, 
         document.getElementById("CalculatedLoss").value = Loss;
