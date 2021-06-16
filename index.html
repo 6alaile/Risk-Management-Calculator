@@ -37,7 +37,7 @@
               <option value="GBP">GBP</option>
               <option value="JPY">JPY</option>
               <option value="TZS">TZS</option>
-              <option value="USD" selected="">USD</option>
+              <option value="USD">USD</option>
             </select>
           </div>
         </div>
@@ -53,39 +53,39 @@
           <label class="col-sm-6 col-form-label">Currency Pair</label>
           <div class="col-sm-6">
             <select id="CurrencyPair" class="form-select" onchange="calculateMargin()">
-              <option>AUDCAD</option>
-              <option>AUDCHF</option>
-              <option>AUDJPY</option>
-              <option>AUDNZD</option>
-              <option>AUDUSD</option>
-              <option>CADCHF</option>
-              <option>CADJPY</option>
-              <option>CHFJPY</option>
-              <option>EURAUD</option>
-              <option>EURCAD</option>
-              <option>EURCHF</option>
-              <option>EURGBP</option>
-              <option>EURJPY</option>
-              <option>EURNZD</option>
-              <option>EURUSD</option>
-              <option>GBPAUD</option>
-              <option>GBPCAD</option>
-              <option>GBPCHF</option>
-              <option>GBPJPY</option>
-              <option>GBPNZD</option>
-              <option>GBPUSD</option>
-              <option>NZDCAD</option>
-              <option>NZDCHF</option>
-              <option>NZDJPY</option>
-              <option>NZDUSD</option>
-              <option>USDCAD</option>
-              <option>USDCHF</option>
-              <option>USDJPY</option>
-              <option>USDMXN</option>
-              <option>USDNOK</option>
-              <option>USDZAR</option>
-              <option>XAGUSD</option>
-              <option>XAUUSD</option>
+              <option>AUD/CAD</option>
+              <option>AUD/CHF</option>
+              <option>AUD/JPY</option>
+              <option>AUD/NZD</option>
+              <option>AUD/USD</option>
+              <option>CAD/CHF</option>
+              <option>CAD/JPY</option>
+              <option>CHF/JPY</option>
+              <option>EUR/AUD</option>
+              <option>EUR/CAD</option>
+              <option>EUR/CHF</option>
+              <option>EUR/GBP</option>
+              <option>EUR/JPY</option>
+              <option>EUR/NZD</option>
+              <option>EUR/USD</option>
+              <option>GBP/AUD</option>
+              <option>GBP/CAD</option>
+              <option>GBP/CHF</option>
+              <option>GBP/JPY</option>
+              <option>GBP/NZD</option>
+              <option>GBP/USD</option>
+              <option>NZD/CAD</option>
+              <option>NZD/CHF</option>
+              <option>NZD/JPY</option>
+              <option>NZD/USD</option>
+              <option>USD/CAD</option>
+              <option>USD/CHF</option>
+              <option>USD/JPY</option>
+              <option>USD/MXN</option>
+              <option>USD/NOK</option>
+              <option>USD/ZAR</option>
+              <option>XAG/USD</option>
+              <option>XAU/USD</option>
             </select> 
           </div>
         </div>
@@ -208,8 +208,31 @@
   <!-- Custom JavaScript -->
   <script src="js/script.js"></script>
   <!-- Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
   <script src="js/accounting.min.js"></script>
   <script src="js/money.min.js"></script>
+
+  <script type="text/javascript">
+    // Load exchange rates data via AJAX:
+    $.getJSON(
+    	// NB: using Open Exchange Rates here, but you can use any source!
+        'https://openexchangerates.org/api/latest.json?app_id=f86995cf17784ff88a15305cb7f8b6ad',
+        function(data) {
+            // Check money.js has finished loading:
+            if ( typeof fx !== "undefined" && fx.rates ) {
+                fx.rates = data.rates;
+                fx.base = data.base;
+            } else {
+                // If not, apply to fxSetup global:
+                var fxSetup = {
+                    rates : data.rates,
+                    base : data.base
+                }
+            }
+        }
+    );
+</script>
 </body>
 
 </html>

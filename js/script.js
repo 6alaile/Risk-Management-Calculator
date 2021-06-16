@@ -1,34 +1,41 @@
-var AccountCurrency = document.getElementById("AccountCurrency");
-var CurrencyPair = document.getElementById("CurrencyPair");
-
-// Function to calculate Margin Required to Open a Position
-
-/*
-First define the CurrencyPair being traded, this determines the Exchange Rate used.
-Next define the LotSize of position and account Leverage; plug into the below formula.
-
-QuoteMargin = Position Size/Account Leverage * Exchange Rate
-            = ((LotSize * 100000)/Leverage) * CurrencyPair
-
-As indicated above, the margin will be calculated in the Quote Currency of the pair.
-To convert this into the selected AccountCurrency, the QuoteMargin is multiplied by
-the exchange rate of the Quote Currency to the AccountCurrency.
-
-AccountMargin = QuoteMargin * Exchange Rate[Quote Currency/Account Currency]
-*/
+// Function to calculate AccountMargin Required to Open a Position
 
 function calculateMargin(){
-    var LotSize = document.getElementById("LotSize").value;
+    // First define the AccountCurrency and CurrencyPair being traded, this determines the Exchange Rates used.
+    var AccountCurrency = document.getElementById("AccountCurrency").value;
+    var CurrencyPair = document.getElementById("CurrencyPair").value;
+
+    /*
+    To determine the CurrencyPair exchange rate, the Base and Quote are split and
+    placed into an array. The array indexes are used to calculate the pair exchange rate.
+    */
+    var Pair = CurrencyPair.split("/");
+    var PairRate = fx(1).from(Pair[0]).to(Pair[1]);
+
+    /*
+    Next define the LotSize of position and account Leverage; plug into the below formula.
+        
+    QuoteMargin = PositionSize [(LotSize * 100000)/Leverage] * CurrencyPair [BaseCurrency/QuoteCurrency]
+    */
     var Leverage = document.getElementById("SelectedLeverage").value;
+    var LotSize = document.getElementById("LotSize").value;
     
-    var QuoteMargin = ((LotSize * 100000) / Leverage) //* CurrencyPair;
+    var PositionSize = ((LotSize * 100000) / Leverage);
+    
+    var QuoteMargin = PositionSize * PairRate;
+    
+    /*
+    As indicated above, the margin will be calculated in the Quote Currency of the pair.
+    To convert this into the selected AccountCurrency, the QuoteMargin is multiplied by
+    the exchange rate of the Quote Currency to the AccountCurrency.
 
-    // var AccountMargin = QuoteMargin * ExchangeRate;
-    // console.log(AccountMargin);
+    AccountMargin = QuoteMargin * ExchangeRate[Quote Currency/Account Currency]
+    */
+    var ExchangeRate = fx(1).from(Pair[1]).to(AccountCurrency);
+    
+    var AccountMargin = QuoteMargin * ExchangeRate;
 
-    document.getElementById("AccountMargin").value = QuoteMargin;
-
-    // return AccountMargin;
+    document.getElementById("AccountMargin").value = AccountMargin;
 }
 
 // Function to determine if account balance exceedes margin
@@ -69,13 +76,13 @@ First determine which of the BUY or SELL radio buttons have been selected.
 Next determine the values of the EntryPrice, TakeProfit and StopLoss.
 
 If BUY is selected:
-Profit = TakeProfit - EntryPrice, Loss = StopLoss - EntryPrice
+Profit = TakeProfit - EntryPrice; Loss = StopLoss - EntryPrice
 
 If SELL is selected:
-Profit = EntryPrice - TakeProfit, Loss = EntryPrice - StopLoss
+Profit = EntryPrice - TakeProfit; Loss = EntryPrice - StopLoss
 
 Then convert the profit/loss into the account currency:
-AccountProfit = Profit * QuoteCurrency/AccountCurrency
+AccountProfit = Profit * ExchangeRate (QuoteCurrency/AccountCurrency)
 
 Finally print the AccountProfit or AccountLoss into the form.
 */
@@ -101,8 +108,8 @@ function ProfitLoss(BuySellButton){
         //let AccountProfit = Profit * ExchangeRate;
         //let AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").value = Profit, 
-        document.getElementById("CalculatedLoss").value = Loss;
+        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit, 2),
+        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss, 2);
     } 
     else if(BuySellButton.Sell) {
 
@@ -112,11 +119,10 @@ function ProfitLoss(BuySellButton){
         //let AccountProfit = Profit * ExchangeRate;
         //let AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").value = Profit, 
-        document.getElementById("CalculatedLoss").value = Loss;
+        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit, 2),
+        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss, 2);
     } 
     else{
         return null;
-        // Figure out how to round Profit and Loss to 2 decimals
     }
 };
