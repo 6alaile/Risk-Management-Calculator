@@ -1,5 +1,7 @@
 # Forex Risk Management Calculator
-A comprehensive calculation tool to determine position size and project potential profits (or losses) that will help the user manage their capital effectively.
+The calculator is a tool that helps the user to determine if they can place a trade in the forex market. This is done by calculating the margin (deposit) required to open the position. 
+
+The user selects the account currency, currency pair being traded and leverage on the account, then enters the lot size (volume) of the trade. This will display a margin in the margin box. Changing these values will also change the margin value.
 
 Disclaimer: This is not a final calculation, broker fees such as spread, swap and comission are not included.
 
