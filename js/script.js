@@ -13,9 +13,8 @@ function calculateMargin(){
     var PairRate = fx(1).from(Pair[0]).to(Pair[1]);
 
     /*
-    Next define the LotSize of position and account Leverage; plug into the below formula.
-        
-    QuoteMargin = PositionSize [(LotSize * 100000)/Leverage] * CurrencyPair [BaseCurrency/QuoteCurrency]
+    Next define the LotSize of position and account Leverage; plug into the below formula.      
+        QuoteMargin = PositionSize [(LotSize * 100000)/Leverage] * CurrencyPair [BaseCurrency/QuoteCurrency]
     */
     var Leverage = document.getElementById("SelectedLeverage").value;
     var LotSize = document.getElementById("LotSize").value;
@@ -35,7 +34,7 @@ function calculateMargin(){
     
     var AccountMargin = QuoteMargin * ExchangeRate;
 
-    document.getElementById("AccountMargin").value = AccountMargin;
+    document.getElementById("AccountMargin").value = accounting.toFixed(AccountMargin, 2);
 }
 
 // Function to determine if account balance exceedes margin
@@ -50,11 +49,14 @@ AccountBalance >= AccountMargin {Green}, AccountBalance <= AccountMargin {Red}
 
 function compareAccount(){
     var AccountBalance = document.getElementById("AccountBalance").value;
+    var AccountMargin = document.getElementById("AccountMargin").value;
 
-    if (AccountMargin >= AccountBalance){
-        document.getElementById("AccountMargin").style = red;
+    if (AccountMargin > AccountBalance){
+        document.getElementById("AccountMargin").style.border = "2px solid red";
     }else if(AccountMargin <= AccountBalance){
-        document.getElementById("AccountMargin").style = Green;
+        document.getElementById("AccountMargin").style.border = "2px solid green";
+    } else {
+        document.getElementById("AccountMargin").style.border = "initial";
     }
 };
 
@@ -64,9 +66,15 @@ function compareAccount(){
 
 */
 function valuePerPip(){
+    var AccountCurrency = document.getElementById("AccountCurrency").value;
+    var LotSize = document.getElementById("LotSize").value;
+    
+    var ExchangeRate = fx(1).from(Pair[1]).to(AccountCurrency);
+
     var OnePip = (LotSize/ExchangeRate) * 100000 ;
     
-    document.getElementById("PipValue").innerHTML = OnePip;
+    console.log(OnePip);
+    document.getElementById("PipValue").value = OnePip;
 };
 
 //Function to determine the profit and/or loss of a position
