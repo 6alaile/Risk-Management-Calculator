@@ -35,6 +35,11 @@ function calculateMargin(){
     var AccountMargin = QuoteMargin * ExchangeRate;
 
     document.getElementById("AccountMargin").value = accounting.toFixed(AccountMargin, 2);
+    
+    // Function to calculate the value of one pip
+    var PipValue = ((LotSize/10000)/ExchangeRate) * 100000;
+    
+    document.getElementById("PipValue").value = accounting.toFixed(PipValue, 2);
 }
 
 // Function to determine if account balance exceedes margin
@@ -60,22 +65,6 @@ function compareAccount(){
     }
 };
 
-// Function to calculate the value of one pip
-
-/*
-
-*/
-function valuePerPip(){
-    var AccountCurrency = document.getElementById("AccountCurrency").value;
-    var LotSize = document.getElementById("LotSize").value;
-    
-    var ExchangeRate = fx(1).from(Pair[1]).to(AccountCurrency);
-
-    var OnePip = (LotSize/ExchangeRate) * 100000 ;
-    
-    console.log(OnePip);
-    document.getElementById("PipValue").value = OnePip;
-};
 
 //Function to determine the profit and/or loss of a position
 
@@ -105,8 +94,11 @@ function ProfitLoss(BuySellButton){
     var TakeProfit = document.getElementById("TakeProfit").value;
     var StopLoss = document.getElementById("StopLoss").value; 
     
-    var AccountProfit;
-    var AccountLoss;
+    var AccountCurrency = document.getElementById("AccountCurrency").value;
+    var CurrencyPair = document.getElementById("CurrencyPair").value;
+    var Pair = CurrencyPair.split("/");
+    var ExchangeRate = fx(1).from(Pair[1]).to(AccountCurrency);
+    
     
     if(BuySellButton.Buy){
 
@@ -116,8 +108,8 @@ function ProfitLoss(BuySellButton){
         //let AccountProfit = Profit * ExchangeRate;
         //let AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit, 2),
-        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss, 2);
+        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
+        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);
     } 
     else if(BuySellButton.Sell) {
 
@@ -127,8 +119,8 @@ function ProfitLoss(BuySellButton){
         //let AccountProfit = Profit * ExchangeRate;
         //let AccountLoss = Loss * ExchangeRate;
 
-        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit, 2),
-        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss, 2);
+        document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
+        document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);
     } 
     else{
         return null;
