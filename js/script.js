@@ -40,21 +40,18 @@ function calculateMargin(){
     var PipValue = ((LotSize/10000)/ExchangeRate) * 100000;
     
     document.getElementById("PipValue").value = accounting.toFixed(PipValue, 2);
-}
 
-// Function to determine if account balance exceedes margin
+    // Function to determine if account balance exceedes margin
 
-/*
-Finally to determine if the defined account balance can open the position based on the
-margin required, compare the AccountBalance to the AccountMargin. The AccountMargin 
-textbox should turn red if larger than the account Balance, and green if less than. 
+    /*
+    To determine if the defined account balance can open the position based on the
+    margin required, compare the AccountBalance to the AccountMargin. The AccountMargin 
+    textbox should turn red if larger than the account Balance, and green if less than. 
 
-AccountBalance >= AccountMargin {Green}, AccountBalance <= AccountMargin {Red}
-*/
-
-function compareAccount(){
+    AccountBalance >= AccountMargin {Green}, AccountBalance <= AccountMargin {Red}
+    */
+   
     var AccountBalance = document.getElementById("AccountBalance").value;
-    var AccountMargin = document.getElementById("AccountMargin").value;
 
     if (AccountMargin > AccountBalance){
         document.getElementById("AccountMargin").style.border = "2px solid red";
@@ -63,28 +60,17 @@ function compareAccount(){
     } else {
         document.getElementById("AccountMargin").style.border = "initial";
     }
-};
+}
 
 
 //Function to determine the profit and/or loss of a position
 
-/*
-First determine which of the BUY or SELL radio buttons have been selected.
-Next determine the values of the EntryPrice, TakeProfit and StopLoss.
-
-If BUY is selected:
-Profit = TakeProfit - EntryPrice; Loss = StopLoss - EntryPrice
-
-If SELL is selected:
-Profit = EntryPrice - TakeProfit; Loss = EntryPrice - StopLoss
-
-Then convert the profit/loss into the account currency:
-AccountProfit = Profit * ExchangeRate (QuoteCurrency/AccountCurrency)
-
-Finally print the AccountProfit or AccountLoss into the form.
-*/
 function ProfitLoss(BuySellButton){
 
+    /*
+    First determine which of the BUY or SELL radio buttons have been selected.
+    Next determine the values of the EntryPrice, TakeProfit and StopLoss.
+    */
     BuySellButton = {
         Buy : document.getElementById("BuyRadioButton").checked,
         Sell : document.getElementById("SellRadioButton").checked
@@ -99,14 +85,21 @@ function ProfitLoss(BuySellButton){
     var Pair = CurrencyPair.split("/");
     var ExchangeRate = fx(1).from(Pair[1]).to(AccountCurrency);
     
-    
+    /*
+    If BUY is selected:
+    Profit = TakeProfit - EntryPrice; Loss = StopLoss - EntryPrice
+
+    If SELL is selected:
+    Profit = EntryPrice - TakeProfit; Loss = EntryPrice - StopLoss
+
+    Then convert the profit/loss into the account currency:
+    AccountProfit = Profit * ExchangeRate (QuoteCurrency/AccountCurrency)
+    then print the results into the form.
+    */
     if(BuySellButton.Buy){
 
         let Profit = (TakeProfit - EntryPrice) * 100000;
         let Loss = (StopLoss - EntryPrice) * 100000;
-
-        //let AccountProfit = Profit * ExchangeRate;
-        //let AccountLoss = Loss * ExchangeRate;
 
         document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
         document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);
@@ -115,9 +108,6 @@ function ProfitLoss(BuySellButton){
 
         let Profit = (EntryPrice - TakeProfit) * 100000;
         let Loss = (EntryPrice - StopLoss) * 100000;
-
-        //let AccountProfit = Profit * ExchangeRate;
-        //let AccountLoss = Loss * ExchangeRate;
 
         document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
         document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);

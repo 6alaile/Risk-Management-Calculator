@@ -20,7 +20,28 @@
     <h1>Risk Management Calculator</h1>
   </header>
 
+  <div class="container-fluid row">
+    <h1>How to use this Calculator</h1>
+    
+      <h2>Margin</h2>
+      <p class="">  
+        The user selects the account currency, currency pair being traded and leverage on the account, 
+        then enters the lot size (volume) of the trade and account balance. 
+        This will display a margin value in the margin box. 
+        The box will light up red if a position cannot be opened and green if a position can be opened.
+        Changing these values will also change the margin value.
+      </p>
+      
+      <h2>Profit/Loss</h2>
+      <p>
+        The user selects either BUY or SELL to determine trade direction, then inputs the entry level, 
+        take profit and stop loss values which will give the profit and loss amount in the boxes below.
+      </p>
+  </div>
+
   <form name="PositionSizeCalculator">
+
+    <!-- Position Sizing -->
 
     <div class="container-fluid row">
       <div id="Position" class="wide">
@@ -45,7 +66,7 @@
         <div class="form-group row"> 
           <label class="col-sm-6 col-form-label">Account Balance</label>
           <div class="col-sm-6">
-            <input id="AccountBalance" class="form-control" size="7" type="number" min="0" step="0.01" onchange="compareAccount()">
+            <input id="AccountBalance" class="form-control" size="7" type="number" min="0" step="0.01" onchange="calculateMargin()">
           </div>
         </div>
 
@@ -212,7 +233,6 @@
 
   <script src="js/accounting.min.js"></script>
   <script src="js/money.min.js"></script>
-
   <script type="text/javascript">
     // Load exchange rates data via AJAX:
     $.getJSON(
@@ -232,7 +252,7 @@
             }
         }
     );
-</script>
+  </script>
 </body>
 
 </html>

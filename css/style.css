@@ -2,6 +2,7 @@
 body{
     margin: auto;
     text-align: center;
+    border-radius: 0.65em;
 }
 
 header{
@@ -18,7 +19,7 @@ label{
     padding: 0.5em;
 }
 
-input, select{
+input, select, option{
     text-align: center;
 }
 
