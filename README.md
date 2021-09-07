@@ -1,6 +1,6 @@
 # Forex Risk Management Calculator
 
-[![GitHub license](https://img.shields.io/github/license/wilby-mj/Forex-Calculator)](https://github.com/wilby-mj/Forex-Calculator/blob/master/LICENSE)   [![GitHub stars](https://img.shields.io/github/stars/wilby-mj/Forex-Calculator)](https://github.com/wilby-mj/Forex-Calculator/stargazers)   [![Twitter Spread The Word](https://img.shields.io/twitter/url?logo=Twitter)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fwilby-mj%2FForex-Calculator)
+[![GitHub license](https://img.shields.io/github/license/wilby-mj/Forex-Calculator)](https://github.com/wilby-mj/Forex-Calculator/blob/master/LICENSE)   [![GitHub stars](https://img.shields.io/github/stars/wilby-mj/Forex-Calculator)](https://github.com/wilby-mj/Forex-Calculator/stargazers)   [![Twitter](https://img.shields.io/twitter/url?label=Tell%20a%20Friend&logo=Twitter&url=https%3A%2F%2Fgithub.com%2Fwilby-mj%2FForex-Calculator)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fwilby-mj%2FForex-Calculator)
 
 The calculator is a trading tool that helps the user to determine if they can place a trade in the forex market. This is done by calculating the margin (deposit) required to open the position of a selected currency pair based on the lot size selected and account leverage. Additionally they have the ability to determine the amount of profit or loss incurred before opening a position.
 
