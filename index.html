@@ -26,19 +26,31 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Risk Management Calculator</span>
+        <button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          How to use this calculator
+        </button>
       </div>
     </nav>
   </header>
 
   <!-- Tool Instructions -->
   <div class="container-fluid row">
-    <h1 class="">How to use this Calculator</h1>
     
-      <h2>Margin</h2>
-      <p class="">  
+    <div class="collapse" id="collapseExample">
+      <h4>Position Size</h4>
+      <p>
+        First define your position size by filling in the Position Size form to the left.
         <ul class="">
-          <li>Select the account currency, currency pair being traded and account leverage</li>
-          <li>Enter the lot size (volume) of the trade and account balance</li> 
+          <li>Select the currency of your trading account</li>
+          <li>Input the balance of your trading account.</li>
+          <li>Select the currency pair you are going to trade.</li>
+          <li>Input the lot size (volume) you plan to trade with.</li>
+        </ul>
+      </p>
+      <h4>Margin</h4>
+      <p class="">  
+        <ul>
+          <li>Select the leverage on your trading account</li> 
           <p>
             This will display a margin value in the selected account currency. 
             The box lights up <em id="red-text">red</em> if a position cannot be opened or <em id="green-text">green</em> if a position can be opened.
@@ -47,11 +59,12 @@
         Changing these values will also change the margin value.
       </p>
       
-      <h2>Profit/Loss</h2>
+      <h4>Profit/Loss</h4>
       <p>
         The user selects either BUY or SELL to determine trade direction, then inputs the entry level, 
         take profit and stop loss values which will give the profit and loss amount in the boxes below.
       </p>
+    </div>
   </div>
 
   <!-- Calculator Form -->
@@ -164,19 +177,22 @@
               </div>
         </div>
 
-        <div class="form-group row">
+        <div class="card-body">
+          <div class="form-group row">
             <label class="col-sm-4 col-form-label">Margin </label>
             <div class="col-sm-8">
               <input id="AccountMargin" class="form-control" type="text" disabled="">
             </div>
-        </div> 
+          </div> 
 
-        <div class="form-group row">
+          <div class="form-group row">
             <label class="col-sm-4 col-form-label">Pip Value </label>
             <div class="col-sm-8">
               <input id="PipValue" class="form-control" type="text" disabled="">
             </div>
-        </div> 
+          </div> 
+        </div>
+        
       </div>
       <!-- End of Margin Calculator -->
       
@@ -184,7 +200,7 @@
       <div id="Profits" class="card split col">
         <h3>Profit Calculation</h3>
 
-        <div class="form-group row card-body">     
+        <div class="form-group row">     
 
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Entry Price </label>
@@ -204,7 +220,7 @@
             </div>
         </div>
 
-        <div class="form-group row card-body">
+        <div class="form-group row">
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Take Profit</label>
             <div class="col-sm-8">

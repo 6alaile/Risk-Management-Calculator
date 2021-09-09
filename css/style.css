@@ -1,6 +1,7 @@
 /* Styling for Elements*/
 body{
     margin: auto;
+    width: 100%;
     border-radius: 0.65em;
 }
 
