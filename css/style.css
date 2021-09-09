@@ -1,13 +1,7 @@
 /* Styling for Elements*/
 body{
     margin: auto;
-    text-align: center;
     border-radius: 0.65em;
-}
-
-header{
-    padding: 0.5em;
-    background-color: darkgrey;
 }
 
 form{
@@ -19,9 +13,10 @@ label{
     padding: 0.5em;
 }
 
-input, select, option{
+h3, input, select, option{
     text-align: center;
 }
+
 
 /* Styling for Classes */
 .wide{
@@ -29,7 +24,7 @@ input, select, option{
 }
 
 .split{
-    border: 0.2em solid darkslategrey;
+    /* border: 0.2em solid darkslategrey; */
     border-radius: 0.65em;
     padding: 1em;
     margin: 0.5em;
@@ -40,3 +35,11 @@ input, select, option{
     padding: 0.5em;
 }
 
+/* Styling for IDs */
+#green-text{
+    color: green;
+}
+
+#red-text{
+    color: red;
+}

@@ -2,15 +2,21 @@
 <html lang="en">
 
 <head>
+
+  <title>Risk Management Calculator</title>
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Forex Calculator, FX Calculator, calculate position size, trading calculator, risk management calculator, profit and loss calculator">
+  <meta name="description" content="A simple tool designed to help traders manage risk by determining potential profit or loss of a trade based on the position size">
 
   <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
-
+              
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6HLFECPED"></script>
   <script>
@@ -21,41 +27,64 @@
     gtag('config', 'G-C6HLFECPED');
   </script>
   
-  <title>Risk Management Calculator</title>
 </head>
 
 <body>
   
+  <!-- Navigation -->
   <header>
-    <h1>Risk Management Calculator</h1>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Risk Management Calculator</span>
+        <button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          How to use this calculator
+        </button>
+      </div>
+    </nav>
   </header>
 
+  <!-- Tool Instructions -->
   <div class="container-fluid row">
-    <h1>How to use this Calculator</h1>
     
-      <h2>Margin</h2>
+    <div class="collapse" id="collapseExample">
+      <h4>Position Size</h4>
+      <p>
+        First define your position size by filling in the Position Size form to the left.
+        <ul class="">
+          <li>Select the currency of your trading account</li>
+          <li>Input the balance of your trading account.</li>
+          <li>Select the currency pair you are going to trade.</li>
+          <li>Input the lot size (volume) you plan to trade with.</li>
+        </ul>
+      </p>
+      <h4>Margin</h4>
       <p class="">  
-        The user selects the account currency, currency pair being traded and leverage on the account, 
-        then enters the lot size (volume) of the trade and account balance. 
-        This will display a margin value in the margin box. 
-        The box will light up red if a position cannot be opened and green if a position can be opened.
+        <ul>
+          <li>Select the leverage on your trading account</li> 
+          <p>
+            This will display a margin value in the selected account currency. 
+            The box lights up <em id="red-text">red</em> if a position cannot be opened or <em id="green-text">green</em> if a position can be opened.
+          </p>
+        </ul>
         Changing these values will also change the margin value.
       </p>
       
-      <h2>Profit/Loss</h2>
+      <h4>Profit/Loss</h4>
       <p>
         The user selects either BUY or SELL to determine trade direction, then inputs the entry level, 
         take profit and stop loss values which will give the profit and loss amount in the boxes below.
       </p>
+    </div>
   </div>
 
-  <form name="PositionSizeCalculator">
-
-    <!-- Position Sizing -->
+  <!-- Calculator Form -->
+  <form name="RiskManagementCalculator">
 
     <div class="container-fluid row">
-      <div id="Position" class="wide">
-        <h2>Position Sizing</h2>
+
+      <!-- Position Size -->
+      <div id="Position" class="card split col">
+        <h3>Position Sizing</h3>
 
         <div class="form-group row">
           <label class="col-sm-6 col-form-label">Account Currency</label>
@@ -122,68 +151,74 @@
         </div>
 
         <div class="form-group row" >
-          <label class="col-sm-6 col-form-label">Lot Size (Volume): </label>
+          <label class="col-sm-6 col-form-label">Lot Size (Volume) </label>
           <div class="col-sm-6">
             <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step="0.01" onchange="calculateMargin()">
           </div>
         </p>
         </div>
-      </div>  
-    </div>
-
-    <!-- End of Row -->
-    <!-- Margin Calculator -->
-
-    <div class="container-fluid row">
-      <div id="Margin" class="split col">
-        <h2>Margin Calculation</h2>
-
-        <div class="form-group row"> 
-            <label class="form-label">Leverage </label>
-            <div class="row">
-              <label for="Leverage" class="form-label col">1 : </label>
-              <select id="SelectedLeverage" class="form-select col" onchange="calculateMargin()">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="200">200</option>
-                <option value="400">400</option>
-                <option value="500">500</option>
-                <option value="1000">1000</option>
-                <option value="2000">2000</option>
-                <option value="3000">3000</option>
-              </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="form-label">Margin </label>
-            <div>
-              <input id="AccountMargin" class="form-control" type="text" disabled=""></div>
-        </div> 
-
-        <div class="form-group row">
-            <label class="form-label">Pip Value </label>
-            <div>
-              <input id="PipValue" class="form-control" type="text" disabled=""></div>
-        </div> 
       </div>
 
-      <!-- End of Margin Calculator -->
-      <!-- Profits Calculator -->
-      
-      <div id="Profits" class="split col">
-        <h2>Profit Calculation</h2>
+      <!-- Margin Calculator -->
+      <div id="Margin" class="card split col">
+        <h3>Margin Calculation</h3>
 
-        <div class="form-group row">
-          <label class="form-label">Entry</label>
-            
+        <div class="form-group row"> 
+              <label class="col-sm-4 col-form-label"> Leverage </label>
+              <label for="Leverage" class="col-sm-2 col-form-label">1 : </label>
+              <div class="col-sm-6">
+                <select id="SelectedLeverage" class="form-select" onchange="calculateMargin()">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="200">200</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
+                  <option value="2000">2000</option>
+                  <option value="3000">3000</option>
+                </select>
+              </div>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Margin </label>
+            <div class="col-sm-8">
+              <input id="AccountMargin" class="form-control" type="text" disabled="">
+            </div>
+          </div> 
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Pip Value </label>
+            <div class="col-sm-8">
+              <input id="PipValue" class="form-control" type="text" disabled="">
+            </div>
+          </div> 
+        </div>
+        
+      </div>
+      <!-- End of Margin Calculator -->
+      
+      <!-- Profit/Loss Calculator -->     
+      <div id="Profits" class="card split col">
+        <h3>Profit Calculation</h3>
+
+        <div class="form-group row">     
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Entry Price </label>
+            <div class="col-sm-8">
+              <input id="EntryPrice" class="form-control" type="number" size="6" min="0.00001" step="0.00001" onchange="ProfitLoss()">
+            </div>
+          </div>
+
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-success" for="BuyRadioButton">
                 <input type="radio" name="BuySellButton" id="BuyRadioButton" class="btn-check" autocomplete="off" onclick="ProfitLoss(BuySellButton.Buy)"/> BUY
@@ -193,42 +228,42 @@
                 <input type="radio" name="BuySellButton" id="SellRadioButton" class="btn-check" autocomplete="off" onclick="ProfitLoss(BuySellButton.Sell)"/> SELL
               </label>
             </div>
-          
-            <div class="row">
-              <input id="EntryPrice" type="number" class="form-control" min="0.00001" step="0.00001" onchange="ProfitLoss()">
-            </div>
-
         </div>
 
         <div class="form-group row">
-          <label class="form-label">Exit</label>
-          <div class="">
-            <label class="form-label">Take Profit</label>
-            <input id="TakeProfit" name="LimitValue" type="number" class="form-control ExitPrice" min="0" step="0.00001" onchange="ProfitLoss()">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Take Profit</label>
+            <div class="col-sm-8">
+              <input id="TakeProfit" name="LimitValue" type="number" class="form-control ExitPrice" size="6" min="0" step="0.00001" onchange="ProfitLoss()">
+            </div>
           </div>
-          <div class="">
-            <label class="form-label">Stop Loss</label>
-            <input id="StopLoss" name="LimitValue" type="number" class="form-control ExitPrice" min="0" step="0.00001" onchange="ProfitLoss()">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Stop Loss</label>
+            <div class="col-sm-8">
+              <input id="StopLoss" name="LimitValue" type="number" class="form-control ExitPrice"  size="6" min="0" step="0.00001" onchange="ProfitLoss()">
+            </div>
           </div>
         </div>
         
-
-        <div class="form-group row">
-          <div class="">
-            <label class="form-label">Profit</label>
-            <div>
-              <input disabled value="" name="result" id="CalculatedProfit" type="text" class="form-control" min="0" step="0.01">
+        <div class="form-group row card-body">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Profit</label>
+            <div class="col-sm-8">
+              <input id="CalculatedProfit" class="form-control" type="text" size="6" name="result" min="0" step="0.01" disabled value="">
             </div>
           </div>
-          <div class="">
-            <label class="form-label">Loss</label>
-            <div>
-              <input disabled value="" name="result" id="CalculatedLoss" type="text" class="form-control" min="0" step="0.01">
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Loss</label>
+            <div class="col-sm-8">
+              <input id="CalculatedLoss" class="form-control" type="text" size="6" name="result" min="0" step="0.01" disabled value="">
             </div>
           </div>
         </div>
       </div>
+
     </div>
+
   </form>
 
   
