@@ -18,4 +18,4 @@ The user selects either BUY or SELL to determine trade direction, then inputs th
 
 Disclaimer: These calculations may vary from real world performance as broker fees (i.e. spread, swap and comission) are not factored into the calculation.
 
-This tool is built using HTML & CSS (Bootstrap) and JavaScript. Hosted at Netlify.
+This tool is built using Bootstrap and JavaScript. Hosted at Netlify.
