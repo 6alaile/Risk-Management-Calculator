@@ -4,6 +4,8 @@
 
 The calculator is a trading tool that helps the user to determine if they can place a trade in the forex market. This is done by calculating the margin (deposit) required to open the position of a selected currency pair based on the lot size selected and account leverage. Additionally they have the ability to determine the amount of profit or loss incurred before opening a position.
 
+<img src="other files/risk-management-calculator.png">
+
 How to use the Calculator
 
 Margin
@@ -16,4 +18,4 @@ The user selects either BUY or SELL to determine trade direction, then inputs th
 
 Disclaimer: These calculations may vary from real world performance as broker fees (i.e. spread, swap and comission) are not factored into the calculation.
 
-This tool is built using HTML & CSS (Bootstrap) and JavaScript. Hosted at Netlify.
+This tool is built using Bootstrap and JavaScript. Hosted at Netlify.
