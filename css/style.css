@@ -35,6 +35,7 @@ h3, input, select, option{
     padding: 0.5em;
 }
 
+
 /* Styling for IDs */
 #green-text{
     color: green;
@@ -43,3 +44,9 @@ h3, input, select, option{
 #red-text{
     color: red;
 }
+
+#over img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
