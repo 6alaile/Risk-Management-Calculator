@@ -6,13 +6,13 @@ The calculator is a trading tool that helps the user to determine if they can pl
 
 <img src="other files/risk-management-calculator.png">
 
-How to use the Calculator
+## How to use the Calculator
 
-Margin
+### Margin
 The user selects the account currency, currency pair being traded and leverage on the account, then enters the lot size (volume) of the trade and account balance. This will display a margin value in the margin box. The box will light up red if a position cannot be opened and green if a position can be opened.
 Changing these values will also change the margin value.
 
-Profit/Loss
+### Profit/Loss
 The user selects either BUY or SELL to determine trade direction, then inputs the entry level, take profit and stop loss values which will give the profit and loss amount in the boxes below.
 
 
