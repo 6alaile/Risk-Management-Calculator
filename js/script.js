@@ -76,6 +76,8 @@ function ProfitLoss(BuySellButton){
         Sell : document.getElementById("SellRadioButton").checked
     };
 
+    var LotSize = document.getElementById("LotSize").value;
+    
     var EntryPrice = document.getElementById("EntryPrice").value;
     var TakeProfit = document.getElementById("TakeProfit").value;
     var StopLoss = document.getElementById("StopLoss").value; 
@@ -98,16 +100,16 @@ function ProfitLoss(BuySellButton){
     */
     if(BuySellButton.Buy){
 
-        let Profit = (TakeProfit - EntryPrice) * 100000;
-        let Loss = (StopLoss - EntryPrice) * 100000;
+        let Profit = (TakeProfit - EntryPrice) * LotSize;
+        let Loss = (StopLoss - EntryPrice) * LotSize;
 
         document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
         document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);
     } 
     else if(BuySellButton.Sell) {
 
-        let Profit = (EntryPrice - TakeProfit) * 100000;
-        let Loss = (EntryPrice - StopLoss) * 100000;
+        let Profit = (EntryPrice - TakeProfit) * LotSize;
+        let Loss = (EntryPrice - StopLoss) * LotSize;
 
         document.getElementById("CalculatedProfit").value =  accounting.toFixed(Profit * ExchangeRate, 2),
         document.getElementById("CalculatedLoss").value = accounting.toFixed(Loss * ExchangeRate, 2);
