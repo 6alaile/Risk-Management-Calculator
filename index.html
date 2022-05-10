@@ -163,7 +163,7 @@
         <div class="form-group row" >
           <label class="col-sm-6 col-form-label">Lot Size (Volume) </label>
           <div class="col-sm-6">
-            <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step="0.01" onchange="calculateMargin()">
+            <input id="LotSize" class="form-control" size="6" type="number" min="0.01" step="0.01" onchange="calculateMargin() ProfitLoss()">
           </div>
         </p>
         </div>
@@ -245,10 +245,10 @@
           
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-success" for="BuyRadioButton">
-              <input type="radio" name="BuySellButton" id="BuyRadioButton" class="btn-check" autocomplete="off" onchange="ProfitLoss(BuySellButton.Buy)"/> BUY
+              <input type="radio" name="BuySellButton" id="BuyRadioButton" class="btn-check" autocomplete="off" onclick="ProfitLoss(BuySellButton.Buy)"/> BUY
             </label>
             <label class="btn btn-danger" for="SellRadioButton">
-              <input type="radio" name="BuySellButton" id="SellRadioButton" class="btn-check" autocomplete="off" onchange="ProfitLoss(BuySellButton.Sell)"/> SELL
+              <input type="radio" name="BuySellButton" id="SellRadioButton" class="btn-check" autocomplete="off" onclick="ProfitLoss(BuySellButton.Sell)"/> SELL
             </label>
           </div>
           
